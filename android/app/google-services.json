@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "172059136614",
+    "firebase_url": "https://bandhu-d4b07.firebaseio.com",
+    "project_id": "bandhu-d4b07",
+    "storage_bucket": "bandhu-d4b07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172059136614:android:8d8b67c6a0057508efd3a7",
+        "android_client_info": {
+          "package_name": "com.axactstudios.bandhunew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172059136614-46hcful3i1fdpaqtn7mevunjak36gukb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNY_8EIyhGz-1RNKCEAW5VDSjJ4bhlLVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172059136614-46hcful3i1fdpaqtn7mevunjak36gukb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "172059136614-pa7qe6vmoetim0d2igoo0o47ncg2o3ba.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.bandhunew"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
