@@ -107,7 +107,7 @@ class _MyDocumentsState extends State<MyDocuments> {
 
   Future filePicker(BuildContext context) async {
     try {
-      file = await FilePicker.getFile(type: FileType.image);
+      file = await FilePicker.getFile(type: FileType.any);
       setState(() {
         fileName = p.basename(file.path);
       });
