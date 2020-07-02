@@ -49,19 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
         title: ("Second Screen"),
-        activeColor: CupertinoColors.activeBlue,
+        activeColor: Color(0xFF6F35A5),
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColor: CupertinoColors.activeBlue,
+        activeColor: Color(0xFF6F35A5),
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.folder),
         title: ("My Documents"),
-        activeColor: CupertinoColors.activeBlue,
+        activeColor: Color(0xFF6F35A5),
         inactiveColor: CupertinoColors.systemGrey,
       ),
     ];

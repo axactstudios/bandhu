@@ -120,32 +120,39 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       height: size.height * 0.03,
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.fromLTRB(152, 10, 152, 10),
-                      color: Color(0xFF6F35A5),
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         if (_formKey.currentState.validate()) {
                           signIn(
                               phone: _phoneController.text,
                               password: _passwordController.text);
                         }
                       },
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Color(0xFFF1E6FF)),
-                        borderRadius: BorderRadius.circular(33),
-                      ),
-                      child: Text(
-                        'Sign in',
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              fontSize: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFF6F35A5),
+                          borderRadius: BorderRadius.circular(33),
+                        ),
+                        width: ((MediaQuery.of(context).size).width * 0.87),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              'SIGN IN',
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                    letterSpacing: 4),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.218,
+                      height: size.height * 0.215,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -209,3 +216,28 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 }
+
+//RaisedButton(
+//padding: EdgeInsets.fromLTRB(152, 10, 152, 10),
+//color: Color(0xFF6F35A5),
+//onPressed: () {
+//if (_formKey.currentState.validate()) {
+//signIn(
+//phone: _phoneController.text,
+//password: _passwordController.text);
+//}
+//},
+//shape: RoundedRectangleBorder(
+//side: BorderSide(color: Color(0xFFF1E6FF)),
+//borderRadius: BorderRadius.circular(33),
+//),
+//child: Text(
+//'Sign in',
+//style: GoogleFonts.poppins(
+//textStyle: TextStyle(
+//fontWeight: FontWeight.w400,
+//color: Colors.white,
+//fontSize: 20),
+//),
+//),
+//),
