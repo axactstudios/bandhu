@@ -1,9 +1,11 @@
 import 'package:bandhunew/Classes/Profile.dart';
+import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MyProfileScreen extends StatefulWidget {
   @override
@@ -64,6 +66,21 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   fontSize: 20, letterSpacing: 7, fontWeight: FontWeight.w400)),
         ),
         backgroundColor: Color(0xFF6F35A5),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () {
+                pushNewScreen(context,
+                    screen: ProfileEdit(), withNavBar: false);
+              },
+              child: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
