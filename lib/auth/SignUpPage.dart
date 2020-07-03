@@ -1,3 +1,4 @@
+import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -112,24 +113,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: size.height * 0.03,
                       ),
-//                      RaisedButton(
-//                        padding: EdgeInsets.fromLTRB(148, 10, 148, 10),
-//                        color: Color(0xFF6F35A5),
-//                        onPressed: ()
-//                        },
-//                        shape: RoundedRectangleBorder(
-//                            side: BorderSide(color: Colors.white),
-//                            borderRadius: BorderRadius.circular(33)),
-//                        child: Text(
-//                          'Sign Up',
-//                          style: GoogleFonts.poppins(
-//                            textStyle: TextStyle(
-//                                fontWeight: FontWeight.w400,
-//                                color: Colors.white,
-//                                fontSize: 20),
-//                          ),
-//                        ),
-//                      ),
                       InkWell(
                         onTap: () {
                           if (_formKey.currentState.validate()) {
@@ -215,7 +198,7 @@ class _SignUpPageState extends State<SignUpPage> {
       if (user != null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => MyHomePage()),
+          MaterialPageRoute(builder: (context) => ProfileEdit()),
         );
       } else {
         Fluttertoast.showToast(
