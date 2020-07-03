@@ -1,3 +1,4 @@
+import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/Screens/MyProfileScreen.dart';
 import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> _buildScreens() {
-    return [MyProfileScreen(), Home(), MyDocuments()];
+    return [MyProfileScreen(), Home(), MyDocuments(), MyActivities()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -61,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.folder),
         title: ("My Documents"),
+        activeColor: Color(0xFF6F35A5),
+        inactiveColor: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.add),
+        title: ("My Activities"),
         activeColor: Color(0xFF6F35A5),
         inactiveColor: CupertinoColors.systemGrey,
       ),

@@ -148,149 +148,39 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: size.height * 0.235,
                       ),
                       Row(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Stack(
-                children: <Widget>[
-                  Positioned(
-                    child: Image.asset('assets/signup_top.png',
-                        height: size.height * 0.15),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    child: Image.asset('assets/main_bottom.png',
-                        height: size.height * 0.15),
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(
-                            height: size.height * 0.1,
-                          ),
-                          SvgPicture.asset(
-                            'assets/agriculture.svg',
-                            height: size.height * 0.26,
-                          ),
                           Text(
-                            'SIGN UP',
+                            'Already registered?',
                             style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 25.0,
-                                  letterSpacing: 5),
-                            ),
+                                textStyle: TextStyle(fontSize: 16)),
                           ),
                           SizedBox(
-                            height: size.height * 0.05,
+                            width: 5,
                           ),
-                          TextFormField(
-                            validator: (value) {
-                              if (value.length < 13) {
-                                return 'Invalid phone number';
-                              } else {
-                                return null;
-                              }
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignInPage()),
+                              );
                             },
-                            controller: _phoneController,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(33)),
-                              hintText: 'Your email',
-                              hintStyle: GoogleFonts.poppins(),
-                            ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          TextFormField(
-                            validator: (value) {
-                              if (value.length < 6) {
-                                return 'Invalid password';
-                              } else {
-                                return null;
-                              }
-                            },
-                            obscureText: true,
-                            controller: _passwordController,
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(33),
-                                ),
-                                hintText: 'Password',
-                                hintStyle: GoogleFonts.poppins()),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.03,
-                          ),
-                          RaisedButton(
-                            padding: EdgeInsets.fromLTRB(148, 10, 148, 10),
-                            color: Color(0xFF6F35A5),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                signUp(
-                                    phone: _phoneController.text,
-                                    password: _passwordController.text);
-                              }
-                            },
-                            shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.white),
-                                borderRadius: BorderRadius.circular(33)),
                             child: Text(
-                              'Sign Up',
+                              'Sign In',
                               style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                    fontSize: 20),
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF6F35A5),
+                                    fontSize: 16),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.235,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'Already registered?',
-                                style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(fontSize: 16)),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignInPage()),
-                                  );
-                                },
-                                child: Text(
-                                  'Sign In',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF6F35A5),
-                                        fontSize: 16),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                          )
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ],
           ),

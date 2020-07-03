@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'MyHomePage.dart';
+import 'MyHomePage.dart';
+import 'auth/SignInPage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
