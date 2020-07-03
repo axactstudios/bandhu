@@ -1,3 +1,4 @@
+import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -307,7 +308,7 @@ class _SignUpPageState extends State<SignUpPage> {
       if (user != null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => MyHomePage()),
+          MaterialPageRoute(builder: (context) => ProfileEdit()),
         );
       } else {
         Fluttertoast.showToast(
