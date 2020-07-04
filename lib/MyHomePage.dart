@@ -1,5 +1,5 @@
 import 'package:bandhunew/Screens/Activities.dart';
-import 'package:bandhunew/Screens/MyProfileScreen.dart';
+import 'package:bandhunew/Profile/MyProfileScreen.dart';
 import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';

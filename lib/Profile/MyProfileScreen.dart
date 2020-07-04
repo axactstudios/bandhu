@@ -15,6 +15,7 @@ class MyProfileScreen extends StatefulWidget {
 class _MyProfileScreenState extends State<MyProfileScreen> {
   final dbRef = FirebaseDatabase.instance.reference().child('Users');
   final FirebaseAuth mAuth = FirebaseAuth.instance;
+  double size1 = 15;
 
   User userData = User();
 
@@ -60,10 +61,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       backgroundColor: Color(0xFFF1E6FF),
       appBar: AppBar(
         title: Text(
-          'MY PROFILE',
+          'Profile',
           style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                  fontSize: 20, letterSpacing: 7, fontWeight: FontWeight.w400)),
+              textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.w400)),
         ),
         backgroundColor: Color(0xFF6F35A5),
         actions: <Widget>[
@@ -83,30 +83,31 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-            width: size.width,
-            child: Column(
-              children: <Widget>[
-                userData.stateName != null
-                    ? Card(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+              width: size.width,
+              child: userData.stateName != null
+                  ? Column(children: <Widget>[
+                      Card(
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'State      : ',
+                                  'State:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -114,6 +115,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.stateName,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -124,32 +126,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.districtName != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'District      : ',
+                                  'District:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -157,6 +152,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.districtName,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -167,32 +163,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.producerName != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Producer      : ',
+                                  'Producer:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -200,6 +189,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.producerName,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -210,15 +200,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.fatherName != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -228,14 +211,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Father / Husband      : ',
+                                  'Father / Husband:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -243,6 +226,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.fatherName,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -253,15 +237,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.age != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -271,14 +248,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Age      : ',
+                                  'Age:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -296,15 +273,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.education != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -314,14 +284,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Education      : ',
+                                  'Education:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -329,6 +299,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.education,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -339,32 +310,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.religion != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Religion      : ',
+                                  'Religion:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -372,6 +336,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.religion,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -382,15 +347,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.sex != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -400,14 +358,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Sex      : ',
+                                  'Sex:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -425,15 +383,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.maritalStatus != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -443,14 +394,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Marital Status      : ',
+                                  'Marital Status:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -458,6 +409,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.maritalStatus,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -468,28 +420,21 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.address != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Address      : ',
+                                  'Address:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -501,6 +446,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.address,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -511,32 +457,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.phNo1 != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Primary Number      : ',
+                                  'Primary Number:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -544,25 +483,19 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.phNo1,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.phNo2 != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
@@ -572,14 +505,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Secondary Number      : ',
+                                  'Secondary Number:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -587,42 +520,36 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.phNo2,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.bankName != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Bank Name      : ',
+                                  'Bank Name:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -630,42 +557,36 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.bankName,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.accNo != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Account Number      : ',
+                                  'Account Number:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -673,42 +594,36 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.accNo,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
                       ),
-                userData.ifscCode != null
-                    ? Card(
+                      Card(
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
                         child: Container(
-                          width: size.width * 0.95,
+                          width: size.width,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'IFSC Code      : ',
+                                  'IFSC Code:',
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -716,10 +631,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.ifscCode,
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
@@ -727,13 +643,13 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           ),
                         ),
                       )
-                    : Center(
-                        child: SpinKitWave(
-                          color: Color(0xFF6F35A5),
-                          size: 30,
-                        ),
+                    ])
+                  : Center(
+                      child: SpinKitWave(
+                        color: Color(0xFF6F35A5),
+                        size: 30,
                       ),
-              ],
+                    ),
             ),
           ),
         ),

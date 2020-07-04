@@ -152,7 +152,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.215,
+                      height: size.height * 0.173,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

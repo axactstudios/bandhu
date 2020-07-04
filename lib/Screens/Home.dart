@@ -23,31 +23,32 @@ class _HomeState extends State<Home> {
             Container(
               color: Colors.white,
               child: Text(
-                'HOME',
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(fontSize: 25, letterSpacing: 5)),
+                'Home',
+                style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 25)),
               ),
             ),
             SizedBox(
               height: 100,
             ),
-            RaisedButton(
-              padding: EdgeInsets.fromLTRB(148, 10, 148, 10),
-              color: Color(0xFF6F35A5),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                pushNewScreen(context, screen: SignInPage(), withNavBar: false);
-              },
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(33)),
-              child: Text(
-                'Sign Out',
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                      fontSize: 20),
+            Center(
+              child: RaisedButton(
+                color: Color(0xFF6F35A5),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  pushNewScreen(context,
+                      screen: SignInPage(), withNavBar: false);
+                },
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(33)),
+                child: Text(
+                  'Sign Out',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        fontSize: 20),
+                  ),
                 ),
               ),
             ),

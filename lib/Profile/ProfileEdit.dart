@@ -42,33 +42,50 @@ class _ProfileEditState extends State<ProfileEdit> {
     _sex = TextEditingController(text: "");
     _maritalStatus = TextEditingController(text: "");
     _address = TextEditingController(text: "");
-    _phNo1 = TextEditingController(text: "+91-");
-    _phNo2 = TextEditingController(text: "+91");
+    _phNo1 = TextEditingController(text: "");
+    _phNo2 = TextEditingController(text: "");
     _bankName = TextEditingController(text: "");
     _accNo = TextEditingController(text: "");
     _ifscCode = TextEditingController(text: "");
   }
 
+  Widget spacer() {
+    return SizedBox(
+      height: 16,
+    );
+  }
+
+  double radius = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF1E6FF),
       appBar: AppBar(
         title: Text(
-          'SET UP YOUR PROFILE',
+          'Bandhu',
           style: GoogleFonts.poppins(
-              textStyle:
-                  TextStyle(fontWeight: FontWeight.w400, letterSpacing: 7)),
+              textStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+          )),
         ),
         backgroundColor: Color(0xFF6F35A5),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(30.0),
           child: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
+                Text(
+                  'Profile Setup',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 30,
+                          color: Colors.purple)),
+                ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -82,16 +99,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _stateName,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter the name of your state"),
+                        hintText: "State Name"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -105,16 +123,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _districtName,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter the name of your district"),
+                        hintText: "District"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -128,16 +147,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _producerName,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter producer's Name"),
+                        hintText: "Producer's Name"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -151,16 +171,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _fatherName,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter the name of your father or husband"),
+                        hintText: "Father/Husband's Name"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -174,16 +195,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _age,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your age"),
+                        hintText: "Age"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -197,16 +219,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _education,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your education qualification"),
+                        hintText: "Education qualification"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -220,16 +243,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _religion,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your religion"),
+                        hintText: "Religion"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -243,7 +267,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _sex,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
@@ -276,6 +300,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                         hintText: "Enter your marital status"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -286,10 +311,12 @@ class _ProfileEditState extends State<ProfileEdit> {
                         return null;
                       }
                     },
+                    maxLines: 4,
+                    minLines: 3,
                     controller: _address,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
@@ -299,11 +326,12 @@ class _ProfileEditState extends State<ProfileEdit> {
                         hintText: "Enter your address"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
                     validator: (value) {
-                      if (value.length < 14) {
+                      if (value.length < 13) {
                         return 'Invalid phone number';
                       } else {
                         return null;
@@ -312,21 +340,22 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _phNo1,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your primary mobile number"),
+                        hintText: "Primary mobile number"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
                     validator: (value) {
-                      if (value.length < 14) {
+                      if (value.length < 13) {
                         return 'Invalid phone number';
                       } else {
                         return null;
@@ -335,16 +364,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _phNo2,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your secondary mobile number"),
+                        hintText: "Secondary mobile number"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -358,16 +388,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _bankName,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter the name of your bank"),
+                        hintText: "Bank name"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -381,16 +412,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _accNo,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your bank account number"),
+                        hintText: "Bank account number"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -404,16 +436,17 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _ifscCode,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your bank\'s IFSC Code"),
+                        hintText: "Bank\'s IFSC Code"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: InkWell(
@@ -433,7 +466,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                             'SUBMIT',
                             style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w400,
-                                letterSpacing: 5,
+                                letterSpacing: 2,
                                 color: Colors.white,
                                 fontSize: 20),
                           ),
