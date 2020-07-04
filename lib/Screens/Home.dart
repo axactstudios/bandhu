@@ -1,4 +1,5 @@
 import 'package:bandhunew/Classes/delayed_animation.dart';
+import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../Profile/MyProfileScreen.dart';
+import 'MyDocuments.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,10 +16,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final int delayedAmount = 500;
+  Choice _selectedChoice = choices[0]; // The app's "state".
 
-  String dropdownitem = 'Profile';
-  List<String> newList = ['Profile', 'My Documents', 'Activity'];
+  void _select(Choice choice) {
+    switch (choice.title) {
+      case 'Profile':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyProfileScreen()),
+        );
+        break;
+      case 'Documents':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyDocuments()),
+        );
+        break;
+      case 'Activities':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyActivities()),
+        );
+        break;
+    }
+
+    setState(() {
+      _selectedChoice = choice;
+    });
+  }
+
+  final int delayedAmount = 500;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +57,17 @@ class _HomeState extends State<Home> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              PopupMenuButton<Choice>(
+                onSelected: _select,
+                itemBuilder: (BuildContext context) {
+                  return choices.map((Choice choice) {
+                    return PopupMenuItem<Choice>(
+                      value: choice,
+                      child: Text(choice.title),
+                    );
+                  }).toList();
+                },
+              ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
@@ -38,7 +77,7 @@ class _HomeState extends State<Home> {
                         screen: SignInPage(), withNavBar: false);
                   },
                   child: Icon(
-                    Icons.power_settings_new,
+                    Icons.exit_to_app,
                     color: Colors.white,
                   ),
                 ),
@@ -133,3 +172,16 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+class Choice {
+  const Choice({this.title, this.icon});
+
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'Profile', icon: Icons.directions_bus),
+  const Choice(title: 'Documents', icon: Icons.directions_railway),
+  const Choice(title: 'Activities', icon: Icons.directions_walk),
+];
