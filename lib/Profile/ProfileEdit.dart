@@ -1,8 +1,11 @@
 import 'package:bandhunew/MyHomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../Classes/Profile.dart';
 
 class ProfileEdit extends StatefulWidget {
   @override
@@ -13,6 +16,50 @@ class _ProfileEditState extends State<ProfileEdit> {
   final dbRef = FirebaseDatabase.instance.reference();
   final FirebaseAuth mAuth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
+
+  String access = 'Self';
+  List<String> accessList = ['Self', 'Purchased from outside', 'Both'];
+
+//  String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
+//  List<String> federationList = [
+//    '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+//    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
+//  ];
+
+  User userData = User();
+
+  getDatabaseRef() async {
+    FirebaseUser user = await mAuth.currentUser();
+    String uid = user.uid;
+    DatabaseReference dbref = FirebaseDatabase.instance
+        .reference()
+        .child('Users')
+        .child(uid)
+        .child('Details');
+    await dbref.once().then((DataSnapshot snap) async {
+      // ignore: non_constant_identifier_names
+      userData.stateName = await snap.value['state'];
+      userData.districtName = await snap.value['district'];
+      userData.producerName = await snap.value['producer'];
+      userData.fatherName = await snap.value['fatherorhusband'];
+      userData.age = await snap.value['age'];
+      userData.education = await snap.value['education'];
+      userData.religion = await snap.value['religion'];
+      userData.sex = await snap.value['sex'];
+      userData.maritalStatus = await snap.value['maritalStatus'];
+      userData.address = await snap.value['address'];
+      userData.phNo1 = await snap.value['phNo1'];
+      userData.phNo2 = await snap.value['phNo2'];
+      userData.bankName = await snap.value['bankName'];
+      userData.accNo = await snap.value['accNo'];
+      userData.ifscCode = await snap.value['ifsc'];
+      userData.coordinates = await snap.value['coordinates'];
+      userData.members = await snap.value['members'];
+      userData.access = await snap.value['access'];
+      userData.shgName = await snap.value['shgName'];
+      setState(() {});
+    });
+  }
 
   TextEditingController _stateName;
   TextEditingController _districtName;
@@ -29,9 +76,11 @@ class _ProfileEditState extends State<ProfileEdit> {
   TextEditingController _bankName;
   TextEditingController _accNo;
   TextEditingController _ifscCode;
+  TextEditingController _coordinates;
+  TextEditingController _members;
+  TextEditingController _shgName;
 
-  @override
-  void initState() {
+  initialize() {
     _stateName = TextEditingController(text: "");
     _districtName = TextEditingController(text: "");
     _producerName = TextEditingController(text: "");
@@ -47,6 +96,15 @@ class _ProfileEditState extends State<ProfileEdit> {
     _bankName = TextEditingController(text: "");
     _accNo = TextEditingController(text: "");
     _ifscCode = TextEditingController(text: "");
+    _coordinates = TextEditingController(text: "");
+    _members = TextEditingController(text: "");
+    _shgName = TextEditingController(text: "");
+  }
+
+  @override
+  void initState() {
+    getDatabaseRef();
+    initialize();
   }
 
   Widget spacer() {
@@ -450,6 +508,190 @@ class _ProfileEditState extends State<ProfileEdit> {
                 spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Field can\'t be left empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: _coordinates,
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(radius),
+                        ),
+                        hintStyle: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: Color(0xFF6F35A5),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        hintText: "Your co-ordinates"),
+                  ),
+                ),
+                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Field can\'t be left empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: _members,
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(radius),
+                        ),
+                        hintStyle: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: Color(0xFF6F35A5),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        hintText: "Number of members"),
+                  ),
+                ),
+                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(radius),
+                        border: Border.all(color: Colors.black)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Access : ',
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  color: Color(0xFF6F35A5),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 17),
+                            ),
+                          ),
+                          DropdownButton(
+                            dropdownColor: Color(0xFFF1E6FF),
+                            underline: Container(
+                              color: Color(0xFFF1E6FF),
+                            ),
+                            value: access,
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: Color(0xFF6F35A5),
+                            ),
+                            iconSize: 18,
+                            onChanged: (String newVal) {
+                              setState(() {
+                                access = newVal;
+                              });
+                            },
+                            items: accessList
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  textAlign: TextAlign.right,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      color: Color(0xFF6F35A5),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Field can\'t be left empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: _shgName,
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(radius),
+                        ),
+                        hintStyle: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: Color(0xFF6F35A5),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        hintText: "Enter your SHG Name"),
+                  ),
+                ),
+                spacer(),
+//                Padding(
+//                  padding: const EdgeInsets.all(4.0),
+//                  child: Container(
+//                    decoration: BoxDecoration(
+//                        borderRadius: BorderRadius.circular(radius),
+//                        border: Border.all(color: Colors.black)),
+//                    child: Padding(
+//                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+//                      child: Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                        children: <Widget>[
+//                          Text(
+//                            'Federation : ',
+//                            style: GoogleFonts.poppins(
+//                              textStyle: TextStyle(
+//                                  color: Color(0xFF6F35A5),
+//                                  fontWeight: FontWeight.w400,
+//                                  fontSize: 17),
+//                            ),
+//                          ),
+//                          DropdownButton(
+//                            dropdownColor: Color(0xFFF1E6FF),
+//                            value: federation,
+//                            icon: Icon(
+//                              Icons.arrow_drop_down,
+//                              color: Colors.white,
+//                            ),
+//                            iconSize: 18,
+//                            onChanged: (String newVal) {
+//                              setState(() {
+//                                federation = newVal;
+//                              });
+//                            },
+//                            items: federationList
+//                                .map<DropdownMenuItem<String>>((String value) {
+//                              return DropdownMenuItem<String>(
+//                                value: value,
+//                                child: Text(
+//                                  value,
+//                                  style: GoogleFonts.poppins(
+//                                    textStyle: TextStyle(
+//                                      color: Color(0xFF6F35A5),
+//                                    ),
+//                                  ),
+//                                ),
+//                              );
+//                            }).toList(),
+//                          ),
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+//                ),
+//                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
                   child: InkWell(
                     onTap: () {
                       writeData();
@@ -503,7 +745,11 @@ class _ProfileEditState extends State<ProfileEdit> {
         'phNo2': _phNo2.text,
         'bankName': _bankName.text,
         'accNo': _accNo.text,
-        'ifsc': _ifscCode.text
+        'ifsc': _ifscCode.text,
+        'coordinates': _coordinates.text,
+        'members': _members.text,
+        'access': access,
+        'shgName': _shgName.text
       });
     Navigator.pushReplacement(
       context,

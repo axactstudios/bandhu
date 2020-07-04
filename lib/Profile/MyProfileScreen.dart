@@ -45,6 +45,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       userData.bankName = await snap.value['bankName'];
       userData.accNo = await snap.value['accNo'];
       userData.ifscCode = await snap.value['ifsc'];
+      userData.coordinates = await snap.value['coordinates'];
+      userData.members = await snap.value['members'];
+      userData.access = await snap.value['access'];
+      userData.shgName = await snap.value['shgName'];
       setState(() {});
     });
   }
@@ -438,7 +442,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: size1,
                                           fontWeight: FontWeight.w500)),
                                 ),
                                 SizedBox(
@@ -607,7 +611,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ),
                       ),
                       Card(
-                        margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
@@ -631,6 +635,154 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 ),
                                 Text(
                                   userData.ifscCode,
+                                  overflow: TextOverflow.fade,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        elevation: 5,
+                        shadowColor: Colors.black,
+                        color: Color(0xFF6F35A5),
+                        child: Container(
+                          width: size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Coordinates:',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size1,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  userData.coordinates,
+                                  overflow: TextOverflow.fade,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        elevation: 5,
+                        shadowColor: Colors.black,
+                        color: Color(0xFF6F35A5),
+                        child: Container(
+                          width: size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Number of Members:',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size1,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  userData.members,
+                                  overflow: TextOverflow.fade,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        elevation: 5,
+                        shadowColor: Colors.black,
+                        color: Color(0xFF6F35A5),
+                        child: Container(
+                          width: size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Access:',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size1,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  userData.access,
+                                  overflow: TextOverflow.fade,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
+                        elevation: 5,
+                        shadowColor: Colors.black,
+                        color: Color(0xFF6F35A5),
+                        child: Container(
+                          width: size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'SHG Name:',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size1,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  userData.shgName,
                                   overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
