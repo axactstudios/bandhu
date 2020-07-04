@@ -9,6 +9,7 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:random_string/random_string.dart';
 
 class NewActivity extends StatefulWidget {
@@ -24,10 +25,14 @@ final FirebaseAuth mAuth = FirebaseAuth.instance;
 String name = "";
 
 class _NewActivityState extends State<NewActivity> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String unique;
   List<Asset> images = List<Asset>();
   String _error = 'No Error Dectected';
   List<String> imageUrls = <String>[];
+  ProgressDialog pr;
+  bool _isLoading = false;
+  double _progress = 0;
 
   Future<dynamic> postImage(Asset imageFile, String key) async {
     final FirebaseStorage _storage =
@@ -38,14 +43,53 @@ class _NewActivityState extends State<NewActivity> {
     storageReference = _storage.ref().child("ActivityImages/${user.uid}/$key");
     StorageUploadTask uploadTask = storageReference
         .putData((await imageFile.getByteData()).buffer.asUint8List());
+    uploadTask.events.listen((event) {
+      setState(() {
+        _isLoading = true;
+        _progress = (event.snapshot.bytesTransferred.toDouble() /
+                event.snapshot.totalByteCount.toDouble()) *
+            100;
+        print('${_progress.toStringAsFixed(2)}%');
+        pr.update(
+          progress: double.parse(_progress.toStringAsFixed(2)),
+          maxProgress: 100.0,
+        );
+      });
+    }).onError((error) {
+      _scaffoldKey.currentState.showSnackBar(new SnackBar(
+        content: new Text(error.toString()),
+        backgroundColor: Colors.red,
+      ));
+    });
+
     StorageTaskSnapshot storageTaskSnapshot = await uploadTask.onComplete;
     print(storageTaskSnapshot.ref.getDownloadURL());
+
     return storageTaskSnapshot.ref.getDownloadURL();
   }
 
   void uploadImages(String key) async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
+    pr = ProgressDialog(
+      context,
+      type: ProgressDialogType.Download,
+      textDirection: TextDirection.rtl,
+      isDismissible: true,
+    );
+    pr.style(
+      message: 'Uploading photos...',
+      borderRadius: 10.0,
+      backgroundColor: Colors.white,
+      elevation: 10.0,
+      insetAnimCurve: Curves.easeInOut,
+      progressWidgetAlignment: Alignment.center,
+      progressTextStyle: TextStyle(
+          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+      messageTextStyle: TextStyle(
+          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+    );
+    await pr.show();
     for (var imageFile in images) {
       postImage(imageFile, key).then((downloadUrl) {
         imageUrls.add(downloadUrl.toString());
@@ -65,6 +109,11 @@ class _NewActivityState extends State<NewActivity> {
         }
       });
     }
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      pr.hide().whenComplete(() {
+        print(pr.isShowing());
+      });
+    });
   }
 
   Future<void> loadAssets() async {
@@ -111,6 +160,7 @@ class _NewActivityState extends State<NewActivity> {
     int keyLength = randomBetween(5, 15);
     String key = randomAlpha(keyLength);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Add new activity',
