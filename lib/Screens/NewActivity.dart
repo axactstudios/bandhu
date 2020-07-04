@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:bandhunew/Widgets/CustomTextField.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path/path.dart' as p;
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,81 +18,92 @@ class NewActivity extends StatefulWidget {
 
 final activityName = TextEditingController();
 final rawMaterial = TextEditingController();
-List<File> file = [];
-String fileName = '';
-List<String> urls = [];
 final avgProduction = TextEditingController();
 final dbRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth mAuth = FirebaseAuth.instance;
 String name = "";
 
 class _NewActivityState extends State<NewActivity> {
-  @override
-  void initState() {
-    urls.clear();
-  }
+  String unique;
+  List<Asset> images = List<Asset>();
+  String _error = 'No Error Dectected';
+  List<String> imageUrls = <String>[];
 
-  void _uploadFile(File file, String filename, String key) async {
+  Future<dynamic> postImage(Asset imageFile, String key) async {
     final FirebaseStorage _storage =
         FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-
+    final FirebaseUser user = await mAuth.currentUser();
+    String uid = user.uid;
     StorageReference storageReference;
     storageReference = _storage.ref().child("ActivityImages/${user.uid}/$key");
+    StorageUploadTask uploadTask = storageReference
+        .putData((await imageFile.getByteData()).buffer.asUint8List());
+    StorageTaskSnapshot storageTaskSnapshot = await uploadTask.onComplete;
+    print(storageTaskSnapshot.ref.getDownloadURL());
+    return storageTaskSnapshot.ref.getDownloadURL();
+  }
 
-    final StorageUploadTask uploadTask = storageReference.putFile(file);
-    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    urls.add(await downloadUrl.ref.getDownloadURL());
+  void uploadImages(String key) async {
+    final FirebaseUser user = await mAuth.currentUser();
+    String uid = user.uid;
+    for (var imageFile in images) {
+      postImage(imageFile, key).then((downloadUrl) {
+        imageUrls.add(downloadUrl.toString());
+        if (imageUrls.length == images.length) {
+          dbRef
+              .child('Activities')
+              .child(user.uid)
+              .child(key)
+              .update({"Images": imageUrls}).then((_) {
+            Fluttertoast.showToast(msg: "Successfully Uploaded");
 
-//    print("URL is ${urls[i]}");
-//    dbRef
-//        .child('Activities')
-//        .child(user.uid)
-//        .child('Activity Doc Links')
-//        .child(key)
-//        .set({
-//      'Link$i': urls[i],
-//      'activtyName': activityName.text,
-//      'rawMaterial': rawMaterial.text,
-//      'avgProduction': avgProduction.text,
-//    });
-    Fluttertoast.showToast(
-        msg: 'Upload Complete', gravity: ToastGravity.CENTER);
+            setState(() {
+              images.clear();
+              imageUrls.clear();
+            });
+          });
+        }
+      });
+    }
+  }
+
+  Future<void> loadAssets() async {
+    List<Asset> resultList = List<Asset>();
+    String error = 'No Error Dectected';
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: 12,
+        enableCamera: true,
+        selectedAssets: images,
+        cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+        materialOptions: MaterialOptions(
+          actionBarColor: "#abcdef",
+          actionBarTitle: "Example App",
+          allViewTitle: "All Photos",
+          useDetailsView: false,
+          selectCircleStrokeColor: "#000000",
+        ),
+      );
+    } on Exception catch (e) {
+      error = e.toString();
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
     setState(() {
-      print(key);
+      images = resultList;
+      _error = error;
     });
   }
 
-  Future filePicker(BuildContext context, String key) async {
-    try {
-      file = await FilePicker.getMultiFile(
-          type: FileType.custom,
-          allowedExtensions: ['jpeg', 'jpg', 'png', 'mp4', 'mov']);
-      for (int i = 0; i < file.length; i++) {
-        setState(() {
-          fileName = p.basename(file[i].path);
-        });
-        print(fileName);
-        _uploadFile(file[i], fileName, key);
-      }
-    } on PlatformException catch (e) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Sorry...'),
-              content: Text('Unsupported exception: $e'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    }
+  @override
+  void initState() {
+    imageUrls.clear();
+    images.clear();
   }
 
   @override
@@ -124,12 +133,14 @@ class _NewActivityState extends State<NewActivity> {
               height: 20,
             ),
             InkWell(
-              onTap: () {
+              onTap: () async {
+                await loadAssets();
+                unique = key;
+                uploadImages(unique);
                 setState(() {
                   name = activityName.text;
                   print(name);
                 });
-                filePicker(context, key);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -141,7 +152,7 @@ class _NewActivityState extends State<NewActivity> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Upload Photos and Videos',
+                      'Upload Photos',
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             fontSize: 18,
@@ -159,8 +170,8 @@ class _NewActivityState extends State<NewActivity> {
             InkWell(
               onTap: () {
                 setState(() {});
-                writeData();
-                addUrls();
+                writeData(unique);
+
                 print(activityName.text);
               },
               child: Container(
@@ -191,45 +202,19 @@ class _NewActivityState extends State<NewActivity> {
     );
   }
 
-  void writeData() async {
+  void writeData(String key) async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
     print(uid);
-    dbRef.child('Activities').child(uid).push().set({
+    dbRef.child('Activities').child(uid).child(key).update({
       'activtyName': activityName.text,
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
     });
-    for (int i = 0; i < urls.length; i++) {
-      dbRef
-          .child('Activities')
-          .child(user.uid)
-          .child('Activity Doc Links')
-          .child(activityName.text)
-          .child(i.toString())
-          .set({
-        'Link$i': urls[i],
-      });
-    }
+
     activityName.clear();
     rawMaterial.clear();
     avgProduction.clear();
     Navigator.pop(context);
-  }
-
-  void addUrls() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-
-    for (int i = 0; i < urls.length; i++) {
-      dbRef
-          .child('Activities')
-          .child(user.uid)
-          .child('Activity Doc Links')
-          .child(name)
-          .child(i.toString())
-          .set({
-        'Link$i': urls[i],
-      });
-    }
   }
 }
