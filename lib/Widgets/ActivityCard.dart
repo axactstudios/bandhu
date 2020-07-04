@@ -1,5 +1,4 @@
 import 'package:bandhunew/Classes/Activity.dart';
-import 'package:bandhunew/Screens/LinksScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -203,13 +202,6 @@ class _ActivityCardState extends State<ActivityCard> {
         if (DATA[key]['activtyName'] == widget.activity.name) {
           print(widget.activity.name);
           imageList = (DATA[key]['Images']);
-//          urlRef.child(key).child('Images').once().then((DataSnapshot snap) {
-//            // ignore: non_constant_identifier_names
-//            var KEYS = snap.value.keys;
-//            // ignore: non_constant_identifier_names
-//            var DATA = snap.value;
-//            for (var key in KEYS) imageList.add();
-//          });
         }
       }
       setState(() {
@@ -218,12 +210,3 @@ class _ActivityCardState extends State<ActivityCard> {
     });
   }
 }
-//Expanded(
-//flex: 1,
-//child: FlatButton.icon(
-//onPressed: () {
-////                                  launchUrl(Links.aadharlink);
-//},
-//icon: Icon(Icons.visibility),
-//label: Text('View')),
-//)
