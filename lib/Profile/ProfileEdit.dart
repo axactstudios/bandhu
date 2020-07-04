@@ -274,9 +274,10 @@ class _ProfileEditState extends State<ProfileEdit> {
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your gender (Male, Female or Other)"),
+                        hintText: "Gender (Male, Female or Other)"),
                   ),
                 ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextFormField(
@@ -290,14 +291,14 @@ class _ProfileEditState extends State<ProfileEdit> {
                     controller: _maritalStatus,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                         hintStyle: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
-                        hintText: "Enter your marital status"),
+                        hintText: "Marital status"),
                   ),
                 ),
                 spacer(),

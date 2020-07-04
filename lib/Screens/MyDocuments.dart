@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart' as p;
@@ -38,8 +39,8 @@ class _MyDocumentsState extends State<MyDocuments> {
     var aadharref = dbRef.child(uid).child('Documents').child('Aadhar');
 
     await aadharref.once().then((DataSnapshot snapshot) async {
-      setState(() async {
-        Links.aadharlink = await snapshot.value['Link'];
+      Links.aadharlink = await snapshot.value['Link'];
+      setState(() {
         print(Links.aadharlink);
       });
     });
@@ -51,8 +52,8 @@ class _MyDocumentsState extends State<MyDocuments> {
     var panref = dbRef.child(uid).child('Documents').child('PAN Card');
 
     await panref.once().then((DataSnapshot snapshot) async {
-      setState(() async {
-        Links.panlink = await snapshot.value['Link'];
+      Links.panlink = await snapshot.value['Link'];
+      setState(() {
         print(Links.panlink);
       });
     });
@@ -64,8 +65,8 @@ class _MyDocumentsState extends State<MyDocuments> {
     var gstref = dbRef.child(uid).child('Documents').child('GST or TIN');
 
     await gstref.once().then((DataSnapshot snapshot) async {
+      Links.gstlink = await snapshot.value['Link'];
       setState(() async {
-        Links.gstlink = await snapshot.value['Link'];
         print(Links.gstlink);
       });
     });
@@ -88,6 +89,7 @@ class _MyDocumentsState extends State<MyDocuments> {
     storageReference = _storage.ref().child("Documents/${user.uid}/$fileType");
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
+    Fluttertoast.showToast(msg: 'Uploading...', gravity: ToastGravity.CENTER);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
     final String url = (await downloadUrl.ref.getDownloadURL());
     print("URL is $url");
@@ -95,6 +97,7 @@ class _MyDocumentsState extends State<MyDocuments> {
     Fluttertoast.showToast(
         msg: 'Upload Complete', gravity: ToastGravity.CENTER);
     setState(() {
+      refresh();
       if (fileType == 'Aadhar') {
         Links.aadharlink = url;
       } else if (fileType == 'PAN Card') {
@@ -131,6 +134,17 @@ class _MyDocumentsState extends State<MyDocuments> {
             );
           });
     }
+    setState(() {
+      refresh();
+      print(fileName);
+    });
+  }
+
+  refresh() {
+    getAadhar();
+    getPan();
+    getGst();
+    return true;
   }
 
   @override
@@ -138,9 +152,9 @@ class _MyDocumentsState extends State<MyDocuments> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'MY DOCUMENTS',
+          'Documents',
           style: GoogleFonts.poppins(
-            textStyle: TextStyle(fontWeight: FontWeight.w400, letterSpacing: 7),
+            textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25),
           ),
         ),
         backgroundColor: Color(0xFF6F35A5),
@@ -169,9 +183,9 @@ class _MyDocumentsState extends State<MyDocuments> {
                                 'AADHAR CARD',
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 25,
-                                      letterSpacing: 5),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 23,
+                                  ),
                                 ),
                               ),
                             ),
@@ -179,76 +193,75 @@ class _MyDocumentsState extends State<MyDocuments> {
                               height: 20,
                             ),
                             Expanded(
-                              flex: 1,
-                              child: Links.aadharlink == null
-                                  ? Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            'Status : ',
-                                            style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 20,
-                                                  color: Colors.black),
+                                flex: 1,
+                                child: Links.aadharlink == null
+                                    ? Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              'Status :',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            'Not Uploaded',
-                                            style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 20,
-                                                  color: Colors.red),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              'Not Uploaded',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 20,
+                                                    color: Colors.red),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  : Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            'Status : ',
-                                            style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 20,
-                                                  color: Colors.black),
+                                        ],
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              'Status :',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 20,
+                                                    color: Colors.black),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            'Uploaded',
-                                            style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 20,
-                                                  color: Colors.green),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              'Uploaded',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 20,
+                                                    color: Colors.green),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: FlatButton.icon(
-                                              onPressed: () {
-                                                launchUrl(Links.aadharlink);
-                                              },
-                                              icon: Icon(Icons.visibility),
-                                              label: Text('View')),
-                                        )
-                                      ],
-                                    ),
-                            ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: FlatButton.icon(
+                                                onPressed: () {
+                                                  launchUrl(Links.aadharlink);
+                                                },
+                                                icon: Icon(Icons.visibility),
+                                                label: Text('View')),
+                                          )
+                                        ],
+                                      )),
                             SizedBox(
                               height: 20,
                             ),
@@ -309,9 +322,9 @@ class _MyDocumentsState extends State<MyDocuments> {
                                 'PAN CARD',
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 25,
-                                      letterSpacing: 5),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 23,
+                                  ),
                                 ),
                               ),
                             ),
@@ -446,12 +459,12 @@ class _MyDocumentsState extends State<MyDocuments> {
                             Expanded(
                               flex: 1,
                               child: Text(
-                                'GST / TIN No.',
+                                'GST/TIN No.',
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 25,
-                                      letterSpacing: 5),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 23,
+                                  ),
                                 ),
                               ),
                             ),
