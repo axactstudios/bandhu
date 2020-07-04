@@ -50,11 +50,18 @@ class _MyActivitiesState extends State<MyActivities> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Activities',
-          style: GoogleFonts.poppins(
-              textStyle:
-                  TextStyle(fontWeight: FontWeight.w400, letterSpacing: 7)),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 58.0),
+          child: Center(
+            child: Text(
+              'Activities',
+              style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 25,
+              )),
+            ),
+          ),
         ),
         backgroundColor: Color(0xFF6F35A5),
         actions: <Widget>[
@@ -75,19 +82,19 @@ class _MyActivitiesState extends State<MyActivities> {
               getDatabaseRef();
             },
             icon: Icon(
-              Icons.remove_circle,
+              Icons.refresh,
               color: Colors.white,
             ),
           )
         ],
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Container(
           child: activityList.length != 0
               ? Column(
                   children: activityList,
                 )
-              : Text('Please Reload'),
+              : Center(child: Text('Please Reload')),
         ),
       ),
     );

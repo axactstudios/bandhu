@@ -41,7 +41,7 @@ class _NewActivityState extends State<NewActivity> {
     urls[i] = (await downloadUrl.ref.getDownloadURL());
     print("URL is ${urls[i]}");
     dbRef.child('Activities').child(user.uid).child(key).set({
-      'Link': urls[i],
+      'Link$i': urls[i],
       'activtyName': activityName.text,
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
@@ -126,10 +126,10 @@ class _NewActivityState extends State<NewActivity> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Upload',
+                      'Upload Photos and Videos',
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                       ),
@@ -184,7 +184,9 @@ class _NewActivityState extends State<NewActivity> {
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
     });
-
+    activityName.clear();
+    rawMaterial.clear();
+    avgProduction.clear();
     Navigator.pop(context);
   }
 }
