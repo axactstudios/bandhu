@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActivityCard extends StatefulWidget {
@@ -14,8 +15,15 @@ class ActivityCard extends StatefulWidget {
 }
 
 class _ActivityCardState extends State<ActivityCard> {
+  @override
+  void initState() {
+    super.initState();
+    getUrls();
+  }
+
+  List<dynamic> imageList = [];
+
   FirebaseAuth mAuth = FirebaseAuth.instance;
-  List<String> urls = [];
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +114,43 @@ class _ActivityCardState extends State<ActivityCard> {
               SizedBox(
                 height: 20,
               ),
+              Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: imageList.isNotEmpty
+                      ? GFCarousel(
+                          items: imageList.map(
+                            (url) {
+                              return Card(
+                                elevation: 8,
+                                margin: EdgeInsets.all(8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                    child: Image.network(url,
+                                        fit: BoxFit.cover, width: 1000.0),
+                                  ),
+                                ),
+                              );
+                            },
+                          ).toList(),
+                          onPageChanged: (index) {
+                            setState(() {
+                              index;
+                            });
+                          },
+                          enlargeMainPage: true,
+                          pagination: true,
+                          passiveIndicator: Colors.black,
+                          activeIndicator: Colors.white,
+                          pagerSize: 10,
+                        )
+                      : Text('No Images')),
               InkWell(
                 onTap: () {
                   setState(() {
-                    getUrls(widget.activity.name);
+                    getUrls();
                   });
                 },
                 child: Container(
@@ -143,38 +184,38 @@ class _ActivityCardState extends State<ActivityCard> {
     );
   }
 
-  getUrls(String activityName) async {
-    urls.clear();
-    FirebaseUser user = await mAuth.currentUser();
+  getUrls() async {
+    final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    DatabaseReference dbref = FirebaseDatabase.instance
+    print(user.uid);
+    DatabaseReference urlRef = FirebaseDatabase.instance
         .reference()
         .child('Activities')
-        .child(uid)
-        .child('Activity Doc Links')
-        .child(activityName);
-    await dbref.once().then((DataSnapshot snapshot) async {
-      List<dynamic> values = await snapshot.value;
-      for (int i = 0; i < values.length; i++) {
-        var linkref = dbref.child(i.toString());
-        await linkref.once().then((DataSnapshot snapshot) async {
-          String link = await snapshot.value['Link'];
-          urls.add(link);
-          print(link);
-        });
+        .child(user.uid);
+    print(widget.activity.name);
+    urlRef.once().then((DataSnapshot snap) {
+      // ignore: non_constant_identifier_names
+      var KEYS = snap.value.keys;
+      // ignore: non_constant_identifier_names
+      var DATA = snap.value;
+      imageList.clear();
+      for (var key in KEYS) {
+        if (DATA[key]['activtyName'] == widget.activity.name) {
+          print(widget.activity.name);
+          imageList = (DATA[key]['Images']);
+//          urlRef.child(key).child('Images').once().then((DataSnapshot snap) {
+//            // ignore: non_constant_identifier_names
+//            var KEYS = snap.value.keys;
+//            // ignore: non_constant_identifier_names
+//            var DATA = snap.value;
+//            for (var key in KEYS) imageList.add();
+//          });
+        }
       }
+      setState(() {
+        print(imageList.length);
+      });
     });
-    setState(() {
-      print('ululululu');
-    });
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => LinksScreen(
-                urls: urls,
-              )),
-    );
   }
 }
 //Expanded(
