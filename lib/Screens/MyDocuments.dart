@@ -110,11 +110,15 @@ class _MyDocumentsState extends State<MyDocuments> {
 
   Future filePicker(BuildContext context) async {
     try {
-      file = await FilePicker.getFile(type: FileType.any);
+      file = await FilePicker.getFile(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'pdf', 'png', 'jpeg'],
+      );
       setState(() {
         fileName = p.basename(file.path);
       });
       print(fileName);
+
       _uploadFile(file, fileName);
     } on PlatformException catch (e) {
       showDialog(

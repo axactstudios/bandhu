@@ -20,14 +20,15 @@ class NewActivity extends StatefulWidget {
 
 final activityName = TextEditingController();
 final rawMaterial = TextEditingController();
-File file;
+List<File> file = [];
 String fileName = '';
+List<String> urls = [];
 final avgProduction = TextEditingController();
 final dbRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth mAuth = FirebaseAuth.instance;
 
 class _NewActivityState extends State<NewActivity> {
-  void _uploadFile(File file, String filename, String key) async {
+  void _uploadFile(File file, String filename, String key, int i) async {
     final FirebaseStorage _storage =
         FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -37,10 +38,10 @@ class _NewActivityState extends State<NewActivity> {
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    final String url = (await downloadUrl.ref.getDownloadURL());
-    print("URL is $url");
+    urls[i] = (await downloadUrl.ref.getDownloadURL());
+    print("URL is ${urls[i]}");
     dbRef.child('Activities').child(user.uid).child(key).set({
-      'Link': url,
+      'Link': urls[i],
       'activtyName': activityName.text,
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
@@ -54,12 +55,16 @@ class _NewActivityState extends State<NewActivity> {
 
   Future filePicker(BuildContext context, String key) async {
     try {
-      file = await FilePicker.getFile(type: FileType.any);
-      setState(() {
-        fileName = p.basename(file.path);
-      });
-      print(fileName);
-      _uploadFile(file, fileName, key);
+      file = await FilePicker.getMultiFile(
+          type: FileType.custom,
+          allowedExtensions: ['jpeg', 'jpg', 'png', 'mp4', 'mov']);
+      for (int i = 0; i < file.length; i++) {
+        setState(() {
+          fileName = p.basename(file[i].path);
+        });
+        print(fileName);
+        _uploadFile(file[i], fileName, key, i);
+      }
     } on PlatformException catch (e) {
       showDialog(
           context: context,
@@ -89,18 +94,23 @@ class _NewActivityState extends State<NewActivity> {
         title: Text(
           'Add new activity',
           style: GoogleFonts.poppins(
-              textStyle:
-                  TextStyle(fontWeight: FontWeight.w400, letterSpacing: 7)),
+              textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25)),
         ),
         backgroundColor: Color(0xFF6F35A5),
       ),
       body: Container(
-        color: Colors.white,
+        color: Color(0xFFF1E6FF),
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
             CustomTextField(activityName, 'Activity Name'),
             CustomTextField(rawMaterial, 'Raw material used'),
             CustomTextField(avgProduction, 'Average Production'),
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () {
                 setState(() {});
@@ -128,13 +138,37 @@ class _NewActivityState extends State<NewActivity> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
-              child: Text('Publish'),
               onTap: () {
+                setState(() {});
                 writeData();
                 print(activityName.text);
               },
-            )
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFF6F35A5),
+                  borderRadius: BorderRadius.circular(33),
+                ),
+                width: ((MediaQuery.of(context).size).width * 0.8),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Publish',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
