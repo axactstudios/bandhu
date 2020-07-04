@@ -191,14 +191,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 SizedBox(
                                   width: 15,
                                 ),
-                                Text(
-                                  userData.producerName,
-                                  overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500)),
+                                Container(
+                                  width: size.width * 0.5,
+                                  child: Text(
+                                    userData.producerName,
+                                    overflow: TextOverflow.fade,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -228,14 +231,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 SizedBox(
                                   width: 15,
                                 ),
-                                Text(
-                                  userData.fatherName,
-                                  overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500)),
+                                Container(
+                                  width: size.width * 0.4,
+                                  child: Text(
+                                    userData.fatherName,
+                                    overflow: TextOverflow.fade,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -307,7 +313,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
@@ -439,6 +445,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Address:',
+                                  overflow: TextOverflow.fade,
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -448,14 +455,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 SizedBox(
                                   width: 15,
                                 ),
-                                Text(
-                                  userData.address,
-                                  overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500)),
+                                Container(
+                                  width: size.width * 0.5,
+                                  child: Text(
+                                    userData.address,
+                                    overflow: TextOverflow.fade,
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
                                 ),
                               ],
                             ),

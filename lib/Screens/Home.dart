@@ -29,34 +29,6 @@ class _HomeState extends State<Home> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-//              Padding(
-//                padding: const EdgeInsets.fromLTRB(0, 0, 220, 0),
-//                child: DropdownButton(
-//                  dropdownColor: Color(0xFF6F35A5),
-//                  value: dropdownitem,
-//                  icon: Icon(
-//                    Icons.arrow_drop_down,
-//                    color: Colors.white,
-//                  ),
-//                  iconSize: 18,
-//                  onChanged: (String newVal) {
-//                    if (newVal == 'Profile') {
-//                      pushNewScreen(context,
-//                          screen: MyProfileScreen(), withNavBar: true);
-//                    }
-//                  },
-//                  items: newList.map<DropdownMenuItem<String>>((String value) {
-//                    return DropdownMenuItem<String>(
-//                      value: value,
-//                      child: Text(
-//                        value,
-//                        style: GoogleFonts.poppins(
-//                            textStyle: TextStyle(color: Colors.white)),
-//                      ),
-//                    );
-//                  }).toList(),
-//                ),
-//              ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
