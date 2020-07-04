@@ -13,7 +13,12 @@ class User {
       bankName,
       accNo,
       ifscCode,
-      age;
+      age,
+      coordinates,
+      members,
+      access,
+      shgName,
+      federationName;
 
   User(
       {this.stateName,
@@ -30,5 +35,10 @@ class User {
       this.phNo2,
       this.bankName,
       this.accNo,
-      this.ifscCode});
+      this.ifscCode,
+      this.coordinates,
+      this.members,
+      this.access,
+      this.shgName,
+      this.federationName});
 }

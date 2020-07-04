@@ -116,6 +116,7 @@ class _ActivityCardState extends State<ActivityCard> {
                           horizontal: 8.0, vertical: 8),
                       child: Text(
                         'View Uploaded\nImages and Videos',
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 13,
