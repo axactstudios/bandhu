@@ -1,5 +1,6 @@
 import 'package:bandhunew/Classes/Profile.dart';
 import 'package:bandhunew/Profile/ProfileEdit.dart';
+import 'package:bandhunew/Profile/ProfileUpdate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,27 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             child: InkWell(
               onTap: () {
                 pushNewScreen(context,
-                    screen: ProfileEdit(), withNavBar: false);
+                    screen: ProfileUpdate(
+                        userData.stateName,
+                        userData.districtName,
+                        userData.producerName,
+                        userData.fatherName,
+                        userData.age,
+                        userData.education,
+                        userData.religion,
+                        userData.sex,
+                        userData.maritalStatus,
+                        userData.address,
+                        userData.phNo1,
+                        userData.phNo2,
+                        userData.bankName,
+                        userData.accNo,
+                        userData.ifscCode,
+                        userData.coordinates,
+                        userData.members,
+                        userData.access,
+                        userData.shgName),
+                    withNavBar: false);
               },
               child: Icon(
                 Icons.edit,
