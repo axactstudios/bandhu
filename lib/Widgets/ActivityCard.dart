@@ -1,4 +1,7 @@
 import 'package:bandhunew/Classes/Activity.dart';
+import 'package:bandhunew/Screens/LinksScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +14,9 @@ class ActivityCard extends StatefulWidget {
 }
 
 class _ActivityCardState extends State<ActivityCard> {
+  FirebaseAuth mAuth = FirebaseAuth.instance;
+  List<String> urls = [];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -102,7 +108,9 @@ class _ActivityCardState extends State<ActivityCard> {
               ),
               InkWell(
                 onTap: () {
-                  setState(() {});
+                  setState(() {
+                    getUrls(widget.activity.name);
+                  });
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -132,6 +140,40 @@ class _ActivityCardState extends State<ActivityCard> {
           ),
         ),
       ),
+    );
+  }
+
+  getUrls(String activityName) async {
+    urls.clear();
+    FirebaseUser user = await mAuth.currentUser();
+    String uid = user.uid;
+    DatabaseReference dbref = FirebaseDatabase.instance
+        .reference()
+        .child('Activities')
+        .child(uid)
+        .child('Activity Doc Links')
+        .child(activityName);
+    await dbref.once().then((DataSnapshot snapshot) async {
+      List<dynamic> values = await snapshot.value;
+      for (int i = 0; i < values.length; i++) {
+        var linkref = dbref.child(i.toString());
+        await linkref.once().then((DataSnapshot snapshot) async {
+          String link = await snapshot.value['Link'];
+          urls.add(link);
+          print(link);
+        });
+      }
+    });
+    setState(() {
+      print('ululululu');
+    });
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => LinksScreen(
+                urls: urls,
+              )),
     );
   }
 }

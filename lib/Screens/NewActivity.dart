@@ -26,9 +26,15 @@ List<String> urls = [];
 final avgProduction = TextEditingController();
 final dbRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth mAuth = FirebaseAuth.instance;
+String name = "";
 
 class _NewActivityState extends State<NewActivity> {
-  void _uploadFile(File file, String filename, String key, int i) async {
+  @override
+  void initState() {
+    urls.clear();
+  }
+
+  void _uploadFile(File file, String filename, String key) async {
     final FirebaseStorage _storage =
         FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -38,14 +44,20 @@ class _NewActivityState extends State<NewActivity> {
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    urls[i] = (await downloadUrl.ref.getDownloadURL());
-    print("URL is ${urls[i]}");
-    dbRef.child('Activities').child(user.uid).child(key).set({
-      'Link$i': urls[i],
-      'activtyName': activityName.text,
-      'rawMaterial': rawMaterial.text,
-      'avgProduction': avgProduction.text,
-    });
+    urls.add(await downloadUrl.ref.getDownloadURL());
+
+//    print("URL is ${urls[i]}");
+//    dbRef
+//        .child('Activities')
+//        .child(user.uid)
+//        .child('Activity Doc Links')
+//        .child(key)
+//        .set({
+//      'Link$i': urls[i],
+//      'activtyName': activityName.text,
+//      'rawMaterial': rawMaterial.text,
+//      'avgProduction': avgProduction.text,
+//    });
     Fluttertoast.showToast(
         msg: 'Upload Complete', gravity: ToastGravity.CENTER);
     setState(() {
@@ -63,7 +75,7 @@ class _NewActivityState extends State<NewActivity> {
           fileName = p.basename(file[i].path);
         });
         print(fileName);
-        _uploadFile(file[i], fileName, key, i);
+        _uploadFile(file[i], fileName, key);
       }
     } on PlatformException catch (e) {
       showDialog(
@@ -113,7 +125,10 @@ class _NewActivityState extends State<NewActivity> {
             ),
             InkWell(
               onTap: () {
-                setState(() {});
+                setState(() {
+                  name = activityName.text;
+                  print(name);
+                });
                 filePicker(context, key);
               },
               child: Container(
@@ -145,6 +160,7 @@ class _NewActivityState extends State<NewActivity> {
               onTap: () {
                 setState(() {});
                 writeData();
+                addUrls();
                 print(activityName.text);
               },
               child: Container(
@@ -184,9 +200,36 @@ class _NewActivityState extends State<NewActivity> {
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
     });
+    for (int i = 0; i < urls.length; i++) {
+      dbRef
+          .child('Activities')
+          .child(user.uid)
+          .child('Activity Doc Links')
+          .child(activityName.text)
+          .child(i.toString())
+          .set({
+        'Link$i': urls[i],
+      });
+    }
     activityName.clear();
     rawMaterial.clear();
     avgProduction.clear();
     Navigator.pop(context);
+  }
+
+  void addUrls() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    for (int i = 0; i < urls.length; i++) {
+      dbRef
+          .child('Activities')
+          .child(user.uid)
+          .child('Activity Doc Links')
+          .child(name)
+          .child(i.toString())
+          .set({
+        'Link$i': urls[i],
+      });
+    }
   }
 }
