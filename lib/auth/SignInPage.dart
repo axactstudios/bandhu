@@ -32,26 +32,26 @@ class _SignInPageState extends State<SignInPage> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Image.asset(
-                'assets/main_top.png',
-                width: size.width * 0.3,
-              ),
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Image.asset(
+              'assets/main_top.png',
+              width: size.width * 0.3,
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/login_bottom.png',
-                width: size.width * 0.45,
-              ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/login_bottom.png',
+              width: size.width * 0.45,
             ),
-            Form(
+          ),
+          SingleChildScrollView(
+            child: Form(
               key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.all(25.0),
@@ -152,7 +152,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.173,
+                      height: size.height * 0.1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -190,8 +190,8 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

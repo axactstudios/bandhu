@@ -97,6 +97,36 @@ class _ActivityCardState extends State<ActivityCard> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {});
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFF6F35A5),
+                    borderRadius: BorderRadius.circular(33),
+                  ),
+                  width: 200,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 8),
+                      child: Text(
+                        'View Uploaded\nImages and Videos',
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
