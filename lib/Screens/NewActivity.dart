@@ -111,7 +111,7 @@ class _NewActivityState extends State<NewActivity> {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
     StorageReference storageReference;
-    storageReference = _storage.ref().child("ActivityImages/${user.uid}/$key");
+    storageReference = _storage.ref().child("ActivityVideos/${user.uid}/$key");
 //    _extension = fileName.toString().split('.').last;
 
     final StorageUploadTask uploadTask = storageReference.putFile(
