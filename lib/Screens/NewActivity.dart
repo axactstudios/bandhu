@@ -424,7 +424,7 @@ class _NewActivityState extends State<NewActivity> {
         .child(user.uid)
         .child(key)
         .update({"Videos": videoUrls}).then((_) {
-      Fluttertoast.showToast(msg: "Successfully Uploaded");
+      Fluttertoast.showToast(msg: "Successfully Uploaded!");
 
       setState(() {
         videoUrls.clear();
