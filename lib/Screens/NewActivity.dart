@@ -82,7 +82,7 @@ class _NewActivityState extends State<NewActivity> {
                 FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
             StorageReference storageReference;
             storageReference =
-                _storage.ref().child("ActivityImages/${user.uid}/$key");
+                _storage.ref().child("ActivityVideos/${user.uid}/$key");
             final String url = await storageReference.getDownloadURL();
             vidUrls.add(url);
             if (vidUrls.length == vids.length) {
