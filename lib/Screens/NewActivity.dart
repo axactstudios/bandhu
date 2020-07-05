@@ -169,7 +169,9 @@ class _NewActivityState extends State<NewActivity> {
     videoUrls.add(url);
     Fluttertoast.showToast(
         msg: 'Upload Complete', gravity: ToastGravity.CENTER);
-    setState(() {});
+    setState(() async {
+      await pr.hide();
+    });
   }
 
   Future videoPicker(BuildContext context) async {
@@ -220,7 +222,6 @@ class _NewActivityState extends State<NewActivity> {
           });
     }
     setState(() async {
-      await pr.hide();
       print(fileName);
     });
   }
