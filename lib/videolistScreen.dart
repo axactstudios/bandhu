@@ -52,7 +52,7 @@ class _VideoListState extends State<VideoList> {
       for (var key in KEYS) {
         if (DATA[key]['activtyName'] == widget.activity.name) {
           print(widget.activity.name);
-          vidList = (DATA[key]['Vids']);
+          vidList = (DATA[key]['Videos']);
         }
       }
       setState(() {
