@@ -32,7 +32,6 @@ class _NewActivityState extends State<NewActivity> {
   bool _isLoading = false;
   double _progress = 0;
 
-
   String unique;
   File file;
   String fileName = '';
@@ -57,7 +56,7 @@ class _NewActivityState extends State<NewActivity> {
       setState(() {
         _isLoading = true;
         _progress = (event.snapshot.bytesTransferred.toDouble() /
-            event.snapshot.totalByteCount.toDouble()) *
+                event.snapshot.totalByteCount.toDouble()) *
             100;
         print('${_progress.toStringAsFixed(2)}%');
         pr.update(
@@ -150,7 +149,7 @@ class _NewActivityState extends State<NewActivity> {
       setState(() {
         _isLoading = true;
         _progress = (event.snapshot.bytesTransferred.toDouble() /
-            event.snapshot.totalByteCount.toDouble()) *
+                event.snapshot.totalByteCount.toDouble()) *
             100;
         print('${_progress.toStringAsFixed(2)}%');
         pr.update(
@@ -231,7 +230,6 @@ class _NewActivityState extends State<NewActivity> {
 
   @override
   Widget build(BuildContext context) {
-
     int keyLength = randomBetween(5, 15);
     String key = randomAlpha(keyLength);
     return Scaffold(
@@ -301,12 +299,6 @@ class _NewActivityState extends State<NewActivity> {
                             ),
                           ),
                         ),
-//                        ListView.builder(
-//                            itemCount: imageUrls.length,
-//                            itemBuilder: (context, index) {
-//                              var item = imageUrls[index];
-//                              return Image.network(item);
-//                            }),
                       ],
                     ),
                   ),
