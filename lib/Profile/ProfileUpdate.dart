@@ -59,11 +59,35 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   String access = 'Self';
   List<String> accessList = ['Self', 'Purchased from outside', 'Both'];
 
-//  String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
-//  List<String> federationList = [
-//    '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
-//    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
-//  ];
+  String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
+  List<String> federationList = [
+    '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀiÁgÀÄw¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÉÆ£Áß½ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'eÉÆÃUÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'eÉÃ¤ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '¸ÉÆ£À¯É ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀÄAqÀWÀlÖ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'wÃxÀðºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÀ¸ÀÆr ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÉÆÃmÉUÀAUÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÉÆÃqÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'n¥ÀÅöà£ÀUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '£É®ªÁV®Ä ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'zÉÃªÀAV ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '¨Á¼ÉPÉÆ¥Àà ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀiÁ«£ÀPÉgÉ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÀÄA¹ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'gÁVUÀÄqÀØ  ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'UÀAfÃ£À½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '²PÁj¥ÀÅgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'DAiÀÄ£ÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '±ÀgÁªÀw ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÁgÀ£ÀºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '£ÁåªÀÄw ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÁgÉÃºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
+  ];
 
   User userData = User();
 
@@ -642,60 +666,58 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   ),
                 ),
                 spacer(),
-//                Padding(
-//                  padding: const EdgeInsets.all(4.0),
-//                  child: Container(
-//                    decoration: BoxDecoration(
-//                        borderRadius: BorderRadius.circular(radius),
-//                        border: Border.all(color: Colors.black)),
-//                    child: Padding(
-//                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-//                      child: Row(
-//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                        children: <Widget>[
-//                          Text(
-//                            'Federation : ',
-//                            style: GoogleFonts.poppins(
-//                              textStyle: TextStyle(
-//                                  color: Color(0xFF6F35A5),
-//                                  fontWeight: FontWeight.w400,
-//                                  fontSize: 17),
-//                            ),
-//                          ),
-//                          DropdownButton(
-//                            dropdownColor: Color(0xFFF1E6FF),
-//                            value: federation,
-//                            icon: Icon(
-//                              Icons.arrow_drop_down,
-//                              color: Colors.white,
-//                            ),
-//                            iconSize: 18,
-//                            onChanged: (String newVal) {
-//                              setState(() {
-//                                federation = newVal;
-//                              });
-//                            },
-//                            items: federationList
-//                                .map<DropdownMenuItem<String>>((String value) {
-//                              return DropdownMenuItem<String>(
-//                                value: value,
-//                                child: Text(
-//                                  value,
-//                                  style: GoogleFonts.poppins(
-//                                    textStyle: TextStyle(
-//                                      color: Color(0xFF6F35A5),
-//                                    ),
-//                                  ),
-//                                ),
-//                              );
-//                            }).toList(),
-//                          ),
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(radius),
+                        border: Border.all(color: Colors.black)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Federation : ',
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  color: Color(0xFF6F35A5),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 17),
+                            ),
+                          ),
+                          DropdownButton(
+                            dropdownColor: Color(0xFFF1E6FF),
+                            value: federation,
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
+                            iconSize: 18,
+                            onChanged: (String newVal) {
+                              setState(() {
+                                federation = newVal;
+                              });
+                            },
+                            items: federationList
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(
+                                      fontFamily: 'Nudi',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: InkWell(
@@ -755,7 +777,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
         'coordinates': _coordinates.text,
         'members': _members.text,
         'access': access,
-        'shgName': _shgName.text
+        'shgName': _shgName.text,
+        'federation': federation
       });
     Navigator.pushReplacement(
       context,
