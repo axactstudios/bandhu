@@ -31,6 +31,15 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>CFBundleURLTypes</key>
+    	<array>
+    	    <dict>
+    	        <key>CFBundleURLSchemes</key>
+    	        <array>
+    	        <string>com.googleusercontent.apps.172059136614-pa7qe6vmoetim0d2igoo0o47ncg2o3ba</string>
+    	        </array>
+    	    </dict>
+    	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -23,7 +23,31 @@ class _ProfileEditState extends State<ProfileEdit> {
   String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
   List<String> federationList = [
     '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
-    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
+    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀiÁgÀÄw¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÉÆ£Áß½ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'eÉÆÃUÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'eÉÃ¤ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '¸ÉÆ£À¯É ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀÄAqÀWÀlÖ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'wÃxÀðºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÀ¸ÀÆr ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÉÆÃmÉUÀAUÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÉÆÃqÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'n¥ÀÅöà£ÀUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '£É®ªÁV®Ä ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'zÉÃªÀAV ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '¨Á¼ÉPÉÆ¥Àà ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ªÀiÁ«£ÀPÉgÉ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÀÄA¹ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'gÁVUÀÄqÀØ  ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'UÀAfÃ£À½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '²PÁj¥ÀÅgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'DAiÀÄ£ÀÆgÀÄ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '±ÀgÁªÀw ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'ºÁgÀ£ÀºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    '£ÁåªÀÄw ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'PÁgÉÃºÀ½î ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
   ];
 
   User userData = User();
@@ -673,9 +697,12 @@ class _ProfileEditState extends State<ProfileEdit> {
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(fontFamily: 'Nudi'),
+                                child: Container(
+                                  width: 150,
+                                  child: Text(
+                                    value,
+                                    style: TextStyle(fontFamily: 'Nudi'),
+                                  ),
                                 ),
                               );
                             }).toList(),
@@ -745,6 +772,7 @@ class _ProfileEditState extends State<ProfileEdit> {
         'coordinates': _coordinates.text,
         'members': _members.text,
         'access': access,
+        'federation': federation,
         'shgName': _shgName.text
       });
     Navigator.pushReplacement(

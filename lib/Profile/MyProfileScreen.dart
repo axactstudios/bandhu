@@ -850,14 +850,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 SizedBox(
                                   width: 15,
                                 ),
-                                Text(
-                                  userData.federationName,
-                                  overflow: TextOverflow.fade,
-                                  style: TextStyle(
-                                      fontFamily: 'Nudi',
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                      fontSize: 18),
+                                Container(
+                                  width: 200,
+                                  child: Text(
+                                    userData.federationName,
+                                    overflow: TextOverflow.fade,
+                                    style: TextStyle(
+                                        fontFamily: 'Nudi',
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                        fontSize: 18),
+                                  ),
                                 ),
                               ],
                             ),

@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../MyHomePage.dart';
-import 'SignUpPage.dart';
+import 'OtpScreen.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -13,18 +11,24 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController _phoneController;
-  TextEditingController _passwordController;
+  TextEditingController _phoneNumberController;
 
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth mAuth = FirebaseAuth.instance;
+  bool isValid = false;
+
+  Future<Null> validate() async {
+    if (_phoneNumberController.text.length == 10) {
+      setState(() {
+        isValid = true;
+      });
+    }
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _phoneController = TextEditingController(text: "");
-    _passwordController = TextEditingController(text: "");
+    _phoneNumberController = TextEditingController(text: "");
   }
 
   @override
@@ -82,109 +86,110 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       height: size.height * 0.05,
                     ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value.length < 13) {
-                          return 'Invalid phone number';
-                        } else {
-                          return null;
-                        }
-                      },
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(33)),
-                          hintText: 'Your email',
-                          hintStyle: GoogleFonts.poppins()),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value.length < 6) {
-                          return 'Invalid password';
-                        } else {
-                          return null;
-                        }
-                      },
-                      obscureText: true,
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(33),
-                          ),
-                          hintText: 'Password',
-                          hintStyle: GoogleFonts.poppins()),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (_formKey.currentState.validate()) {
-                          signIn(
-                              phone: _phoneController.text,
-                              password: _passwordController.text);
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xFF6F35A5),
-                          borderRadius: BorderRadius.circular(33),
-                        ),
-                        width: ((MediaQuery.of(context).size).width * 0.87),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              'SIGN IN',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                    letterSpacing: 4),
+                    Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.all(16),
+                      height: MediaQuery.of(context).size.height,
+                      child: new Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 16, left: 16, right: 16),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                                color: Colors.white,
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      controller: _phoneNumberController,
+                                      autofocus: true,
+                                      onChanged: (text) {
+                                        validate();
+                                      },
+                                      decoration: InputDecoration(
+                                        labelText: "10 digit mobile number",
+                                        prefix: Container(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Text(
+                                            "+91",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20),
+                                          ),
+                                        ),
+                                      ),
+                                      autovalidate: true,
+                                      autocorrect: false,
+                                      maxLengthEnforced: true,
+                                      validator: (value) {
+                                        return !isValid
+                                            ? 'Please provide a valid 10 digit phone number'
+                                            : null;
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(16),
+                                    child: Center(
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.85,
+                                        child: RaisedButton(
+                                          color: !isValid
+                                              ? Color(0xFF6F35A5)
+                                              : Colors.teal,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0)),
+                                          child: Text(
+                                            !isValid
+                                                ? "ENTER PHONE NUMBER"
+                                                : "CONTINUE",
+                                            style: !isValid
+                                                ? TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.bold)
+                                                : TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                          ),
+                                          onPressed: () {
+                                            if (isValid) {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OTPScreen(
+                                                      mobileNumber:
+                                                          _phoneNumberController
+                                                              .text,
+                                                    ),
+                                                  ));
+                                            } else {
+                                              validate();
+                                            }
+                                          },
+                                          padding: EdgeInsets.all(16.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.217,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Don\'t have an Account?',
-                          style: GoogleFonts.poppins(
-                              textStyle: TextStyle(fontSize: 16)),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage()),
-                            );
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6F35A5),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
                     ),
                   ],
                 ),
@@ -195,49 +200,4 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-
-  void signIn({String phone, String password}) async {
-    mAuth
-        .signInWithEmailAndPassword(email: phone, password: password)
-        .then((AuthResult) async {
-      FirebaseUser user = await mAuth.currentUser();
-
-      if (user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => MyHomePage()),
-        );
-      } else {
-        Fluttertoast.showToast(
-            msg: 'Login Failed',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER);
-      }
-    });
-  }
 }
-
-//RaisedButton(
-//padding: EdgeInsets.fromLTRB(152, 10, 152, 10),
-//color: Color(0xFF6F35A5),
-//onPressed: () {
-//if (_formKey.currentState.validate()) {
-//signIn(
-//phone: _phoneController.text,
-//password: _passwordController.text);
-//}
-//},
-//shape: RoundedRectangleBorder(
-//side: BorderSide(color: Color(0xFFF1E6FF)),
-//borderRadius: BorderRadius.circular(33),
-//),
-//child: Text(
-//'Sign in',
-//style: GoogleFonts.poppins(
-//textStyle: TextStyle(
-//fontWeight: FontWeight.w400,
-//color: Colors.white,
-//fontSize: 20),
-//),
-//),
-//),

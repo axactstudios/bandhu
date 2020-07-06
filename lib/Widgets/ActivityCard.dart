@@ -1,15 +1,13 @@
 import 'package:bandhunew/Classes/Activity.dart';
-import 'package:bandhunew/Screens/NewActivity.dart';
-import 'package:bandhunew/videoPlayer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../videolistScreen.dart';
 
+// ignore: must_be_immutable
 class ActivityCard extends StatefulWidget {
   Activity activity;
   ActivityCard(this.activity);
