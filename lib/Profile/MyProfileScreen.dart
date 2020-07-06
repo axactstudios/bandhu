@@ -335,7 +335,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 25,
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w500)),
                                 ),
                               ],
