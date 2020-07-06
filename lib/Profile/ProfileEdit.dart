@@ -20,11 +20,11 @@ class _ProfileEditState extends State<ProfileEdit> {
   String access = 'Self';
   List<String> accessList = ['Self', 'Purchased from outside', 'Both'];
 
-//  String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
-//  List<String> federationList = [
-//    '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
-//    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
-//  ];
+  String federation = '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl';
+  List<String> federationList = [
+    '¸ÁUÀgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl',
+    'gÁªÀÄZÀAzÀæ¥ÀÄgÀ ¹ÛçÃ§AzsÀÄ MPÀÆÌl'
+  ];
 
   User userData = User();
 
@@ -636,60 +636,56 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ),
                 ),
                 spacer(),
-//                Padding(
-//                  padding: const EdgeInsets.all(4.0),
-//                  child: Container(
-//                    decoration: BoxDecoration(
-//                        borderRadius: BorderRadius.circular(radius),
-//                        border: Border.all(color: Colors.black)),
-//                    child: Padding(
-//                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-//                      child: Row(
-//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                        children: <Widget>[
-//                          Text(
-//                            'Federation : ',
-//                            style: GoogleFonts.poppins(
-//                              textStyle: TextStyle(
-//                                  color: Color(0xFF6F35A5),
-//                                  fontWeight: FontWeight.w400,
-//                                  fontSize: 17),
-//                            ),
-//                          ),
-//                          DropdownButton(
-//                            dropdownColor: Color(0xFFF1E6FF),
-//                            value: federation,
-//                            icon: Icon(
-//                              Icons.arrow_drop_down,
-//                              color: Colors.white,
-//                            ),
-//                            iconSize: 18,
-//                            onChanged: (String newVal) {
-//                              setState(() {
-//                                federation = newVal;
-//                              });
-//                            },
-//                            items: federationList
-//                                .map<DropdownMenuItem<String>>((String value) {
-//                              return DropdownMenuItem<String>(
-//                                value: value,
-//                                child: Text(
-//                                  value,
-//                                  style: GoogleFonts.poppins(
-//                                    textStyle: TextStyle(
-//                                      color: Color(0xFF6F35A5),
-//                                    ),
-//                                  ),
-//                                ),
-//                              );
-//                            }).toList(),
-//                          ),
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//                spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(radius),
+                        border: Border.all(color: Colors.black)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Federation : ',
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  color: Color(0xFF6F35A5),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 17),
+                            ),
+                          ),
+                          DropdownButton(
+                            dropdownColor: Color(0xFFF1E6FF),
+                            value: federation,
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
+                            iconSize: 18,
+                            onChanged: (String newVal) {
+                              setState(() {
+                                federation = newVal;
+                              });
+                            },
+                            items: federationList
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(fontFamily: 'Nudi'),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                spacer(),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: InkWell(

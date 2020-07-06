@@ -50,6 +50,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       userData.members = await snap.value['members'];
       userData.access = await snap.value['access'];
       userData.shgName = await snap.value['shgName'];
+      userData.federationName = await snap.value['federation'];
       setState(() {});
     });
   }
@@ -790,7 +791,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ),
                       ),
                       Card(
-                        margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
                         color: Color(0xFF6F35A5),
@@ -820,6 +821,43 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
+                        elevation: 5,
+                        shadowColor: Colors.black,
+                        color: Color(0xFF6F35A5),
+                        child: Container(
+                          width: size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Federation:',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size1,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  userData.federationName,
+                                  overflow: TextOverflow.fade,
+                                  style: TextStyle(
+                                      fontFamily: 'Nudi',
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                      fontSize: 18),
                                 ),
                               ],
                             ),
