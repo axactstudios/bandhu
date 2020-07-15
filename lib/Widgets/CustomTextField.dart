@@ -21,13 +21,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextField(
-          minLines: 3,
-          maxLines: 4,
+          minLines: 2,
+          maxLines: 3,
           controller: widget.controller,
           cursorColor: Colors.black,
           decoration: new InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
               ),
               contentPadding:
                   EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),

@@ -1,3 +1,4 @@
+import 'package:bandhunew/MyHomePage.dart';
 import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:bandhunew/Screens/Home.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -201,7 +202,7 @@ class _OTPScreenState extends State<OTPScreen> {
             } else {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => MyHomePage()),
                   (Route<dynamic> route) => false);
             }
           });

@@ -1,5 +1,4 @@
 import 'package:bandhunew/Classes/Profile.dart';
-import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:bandhunew/Profile/ProfileUpdate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';

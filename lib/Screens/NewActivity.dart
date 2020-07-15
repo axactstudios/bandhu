@@ -27,6 +27,38 @@ String name = "";
 
 class _NewActivityState extends State<NewActivity> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String federation = 'CrPÉ ºÁ¼É vÀmÉÖ';
+  List<String> federationList = [
+    'CrPÉ ºÁ¼É vÀmÉÖ',
+    'CrPÉ £À¸Àðj',
+    'ºÀ¹ CrPÉ',
+    'UÉÆÃlÄ CrPÉ',
+    'a°©° UÉÆÃlÄ',
+    '±ÀÄAp',
+    '¨Á¼ÉºÀtÄÚ',
+    'vÀgÀPÁj',
+    '«Ã¼ÀåzÉ¯É',
+    'vÉAV£ÀPÁ¬Ä',
+    'PÉÆ§âj',
+    'ZÀPÀÄÌ°',
+    'PÉÆÃqÀÄ§¼É',
+    'D®ÆUÀqÉØ a¥ïì',
+    'ªÀiÁ®Äàj',
+    'ºÀ¥Àà¼À',
+    'gÉÆnÖ',
+    '±Áå«UÉ',
+    '±ÉÃAUÁ',
+    'SÁgÀ',
+    '§ÆA¢',
+    '®qÀÄØ',
+    '¨ÁzÀÄµÀ',
+    'vÉAV£À £Áj£À ºÀUÀÎ',
+    '©¢gÀÄ §ÄnÖ',
+    'Mt«ÄÃ£ÀÄ',
+    'PÀÈvÀPÀ gÀvÀß& D¨sÀgÀt',
+    'ªÀiÁåmï',
+    '¨É®è'
+  ];
 
   ProgressDialog pr;
   bool _isLoading = false;
@@ -252,7 +284,59 @@ class _NewActivityState extends State<NewActivity> {
               SizedBox(
                 height: 20,
               ),
-              CustomTextField(activityName, 'Activity Name'),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 25),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black)),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Activity : ',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                color: Color(0xFF6F35A5),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17),
+                          ),
+                        ),
+                        DropdownButton(
+                          dropdownColor: Color(0xFFF1E6FF),
+                          value: federation,
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.white,
+                          ),
+                          iconSize: 18,
+                          onChanged: (String newVal) {
+                            setState(() {
+                              federation = newVal;
+                            });
+                          },
+                          items: federationList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Container(
+                                width: 200,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(fontFamily: 'Nudi'),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               CustomTextField(rawMaterial, 'Raw material used'),
               CustomTextField(avgProduction, 'Average Production'),
               SizedBox(
@@ -402,7 +486,7 @@ class _NewActivityState extends State<NewActivity> {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
     dbRef.child('Activities').child(uid).child(key).update({
-      'activtyName': activityName.text,
+      'activtyName': federation,
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
     });
