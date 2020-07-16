@@ -42,7 +42,7 @@ class _MyActivitiesState extends State<MyActivities> {
   void initState() {
     // TODO: implement initState
     getDatabaseRef();
-    setState(() {});
+
     super.initState();
   }
 
@@ -50,6 +50,7 @@ class _MyActivitiesState extends State<MyActivities> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(left: 58.0),
           child: Center(

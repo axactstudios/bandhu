@@ -26,12 +26,26 @@ class _VideoListState extends State<VideoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          for (int i = 0; i < vidList.length; i++) card(vidList[i], i)
-        ],
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Color(0xFF6F35A5),
+          title: Text('Videos'),
+        ),
+        body: vidList != null
+            ? ListView(
+                children: [
+                  for (int i = 0; i < vidList.length; i++) card(vidList[i], i)
+                ],
+              )
+            : Container(
+                child: SafeArea(
+                    child: Center(
+                  child: Text(
+                    'NO VIDEOS',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black87),
+                  ),
+                )),
+              ));
   }
 
   getUrls() async {
@@ -56,7 +70,7 @@ class _VideoListState extends State<VideoList> {
         }
       }
       setState(() {
-        print(vidList.length);
+        print('vidList.length');
       });
     });
   }

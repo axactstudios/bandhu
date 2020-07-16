@@ -42,11 +42,10 @@ class _ActivityCardState extends State<ActivityCard> {
             children: <Widget>[
               Text(
                 widget.activity.name,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 23,
-                  ),
+                style: TextStyle(
+                  fontFamily: 'Nudi',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 23,
                 ),
               ),
               SizedBox(
@@ -115,39 +114,42 @@ class _ActivityCardState extends State<ActivityCard> {
               SizedBox(
                 height: 20,
               ),
-              Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: imageList.isNotEmpty
-                      ? GFCarousel(
-                          items: imageList.map(
-                            (url) {
-                              return Card(
-                                elevation: 8,
-                                margin: EdgeInsets.all(8.0),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5.0)),
-                                    child: Image.network(url,
-                                        fit: BoxFit.cover, width: 1000.0),
-                                  ),
+              imageList != null
+                  ? Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: GFCarousel(
+                        items: imageList.map(
+                          (url) {
+                            return Card(
+                              elevation: 8,
+                              margin: EdgeInsets.all(8.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.0)),
+                                  child: Image.network(url,
+                                      fit: BoxFit.cover, width: 1000.0),
                                 ),
-                              );
-                            },
-                          ).toList(),
-                          onPageChanged: (index) {
-                            setState(() {
-                              index;
-                            });
+                              ),
+                            );
                           },
-                          enlargeMainPage: true,
-                          pagination: true,
-                          passiveIndicator: Colors.black,
-                          activeIndicator: Colors.white,
-                          pagerSize: 10,
-                        )
-                      : Text('No Images')),
+                        ).toList(),
+                        onPageChanged: (index) {
+                          setState(() {
+                            index;
+                          });
+                        },
+                        enlargeMainPage: true,
+                        pagination: true,
+                        passiveIndicator: Colors.black,
+                        activeIndicator: Colors.white,
+                        pagerSize: 10,
+                      ))
+                  : Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('No Images'),
+                    ),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -211,7 +213,7 @@ class _ActivityCardState extends State<ActivityCard> {
         }
       }
       setState(() {
-        print(imageList.length);
+        print('imageList.length');
       });
     });
   }

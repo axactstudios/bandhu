@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:bandhunew/Classes/Activity.dart';
+import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/Widgets/CustomTextField.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -268,6 +270,14 @@ class _NewActivityState extends State<NewActivity> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyActivities()),
+              );
+            },
+            child: Icon(Icons.arrow_back_ios)),
         title: Text(
           'Add new activity',
           style: GoogleFonts.poppins(
@@ -520,6 +530,5 @@ class _NewActivityState extends State<NewActivity> {
     activityName.clear();
     rawMaterial.clear();
     avgProduction.clear();
-    Navigator.pop(context);
   }
 }
