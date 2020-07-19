@@ -68,7 +68,7 @@ class _ActivityCardState extends State<ActivityCard> {
                     width: 10,
                   ),
                   Container(
-                    width: 190,
+                    width: 170,
                     child: Text(
                       widget.activity.rawMaterial,
                       style: GoogleFonts.poppins(

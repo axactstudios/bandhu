@@ -4,9 +4,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'Classes/Activity.dart';
 
+// ignore: must_be_immutable
 class VideoList extends StatefulWidget {
   Activity activity;
   VideoList(this.activity);

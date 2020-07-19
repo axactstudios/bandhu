@@ -698,7 +698,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Container(
-                                  width: 150,
+                                  width: 110,
                                   child: Text(
                                     value,
                                     style: TextStyle(fontFamily: 'Nudi'),

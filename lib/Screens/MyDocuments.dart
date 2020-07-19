@@ -292,7 +292,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                         'Upload',
                                         style: GoogleFonts.poppins(
                                           textStyle: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),
                                         ),
@@ -432,7 +432,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                         'Upload',
                                         style: GoogleFonts.poppins(
                                           textStyle: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),
                                         ),
@@ -572,7 +572,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                         'Upload',
                                         style: GoogleFonts.poppins(
                                           textStyle: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),
                                         ),

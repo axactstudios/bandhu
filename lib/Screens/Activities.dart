@@ -15,7 +15,7 @@ class _MyActivitiesState extends State<MyActivities> {
   final dbRef = FirebaseDatabase.instance.reference().child('Users');
   final FirebaseAuth mAuth = FirebaseAuth.instance;
 
-  List<ActivityCard> activityList = new List();
+  List<ActivityCard> activityList =  List();
 
   getDatabaseRef() async {
     activityList.clear();

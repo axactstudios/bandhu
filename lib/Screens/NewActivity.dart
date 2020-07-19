@@ -333,7 +333,7 @@ class _NewActivityState extends State<NewActivity> {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Container(
-                                width: 200,
+                                width: 170,
                                 child: Text(
                                   value,
                                   style: TextStyle(fontFamily: 'Nudi'),

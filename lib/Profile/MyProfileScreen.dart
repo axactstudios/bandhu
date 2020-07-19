@@ -253,7 +253,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   width: 15,
                                 ),
                                 Container(
-                                  width: size.width * 0.4,
+                                  width: size.width * 0.3,
                                   child: Text(
                                     userData.fatherName,
                                     overflow: TextOverflow.fade,
@@ -850,7 +850,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   width: 15,
                                 ),
                                 Container(
-                                  width: 200,
+                                  width: 150,
                                   child: Text(
                                     userData.federationName,
                                     overflow: TextOverflow.fade,
