@@ -4,10 +4,13 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../Classes/Profile.dart';
+import 'package:gps/gps.dart';
 
 class ProfileEdit extends StatefulWidget {
+  String userType;
+  ProfileEdit({this.userType});
+
   @override
   _ProfileEditState createState() => _ProfileEditState();
 }
@@ -550,6 +553,19 @@ class _ProfileEditState extends State<ProfileEdit> {
                               color: Color(0xFF6F35A5),
                               fontWeight: FontWeight.w400),
                         ),
+                        suffixIcon: InkWell(
+                          onTap: () async {
+                            var latlang = await Gps.currentGps();
+                            setState(() {
+                              print(latlang);
+                              _coordinates.text = latlang.toString();
+                            });
+                          },
+                          child: Icon(
+                            Icons.gps_fixed,
+                            color: Color(0xFF6F35A5),
+                          ),
+                        ),
                         hintText: "Your co-ordinates"),
                   ),
                 ),
@@ -773,7 +789,8 @@ class _ProfileEditState extends State<ProfileEdit> {
         'members': _members.text,
         'access': access,
         'federation': federation,
-        'shgName': _shgName.text
+        'shgName': _shgName.text,
+        'userType': widget.userType
       });
     Navigator.pushReplacement(
       context,

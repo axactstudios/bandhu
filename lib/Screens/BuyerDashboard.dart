@@ -1,46 +1,47 @@
 import 'package:bandhunew/Classes/delayed_animation.dart';
-import 'package:bandhunew/Screens/Activities.dart';
+import 'package:bandhunew/Profile/BuyerProfileScreen.dart';
+import 'package:bandhunew/Screens/BuyerActivity.dart';
+import 'package:bandhunew/Screens/BuyerDocuments.dart';
+import 'package:bandhunew/Screens/BuyerProfile.dart';
 import 'package:bandhunew/Screens/MainHome.dart';
-import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
-import '../Profile/MyProfileScreen.dart';
-import 'MyDocuments.dart';
-
-class Home extends StatefulWidget {
+class BuyerDashboard extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _BuyerDashboardState createState() => _BuyerDashboardState();
 }
 
-class _HomeState extends State<Home> {
+class _BuyerDashboardState extends State<BuyerDashboard> {
   Choice _selectedChoice = choices[0]; // The app's "state".
 
   void _select(Choice choice) {
     switch (choice.title) {
       case 'Main Home':
         FirebaseAuth.instance.signOut();
-        pushNewScreen(context, screen: MainHome(), withNavBar: false);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MainHome()),
+        );
         break;
       case 'Profile':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyProfileScreen()),
+          MaterialPageRoute(builder: (context) => BuyerProfileScreen()),
         );
         break;
       case 'Documents':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyDocuments()),
+          MaterialPageRoute(builder: (context) => BuyerDocuments()),
         );
         break;
       case 'Activities':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyActivities()),
+          MaterialPageRoute(builder: (context) => BuyerActivity()),
         );
         break;
     }
