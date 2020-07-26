@@ -1,21 +1,18 @@
-import 'package:bandhunew/Screens/Activities.dart';
-import 'package:bandhunew/Profile/MyProfileScreen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bandhunew/Profile/BuyerProfileScreen.dart';
+import 'package:bandhunew/Screens/BuyerActivity.dart';
+import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerDocuments.dart';
+import 'package:bandhunew/Screens/BuyerProfile.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/models/persisten-bottom-nav-item.widget.dart';
-import 'package:persistent_bottom_nav_bar/models/persistent-bottom-nav-bar-styles.widget.dart';
 import 'package:persistent_bottom_nav_bar/models/persistent-nav-bar-scaffold.widget.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import 'Screens/Home.dart';
-import 'Screens/MyDocuments.dart';
-
-class MyHomePage extends StatefulWidget {
+class BuyerHome extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _BuyerHomeState createState() => _BuyerHomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _BuyerHomeState extends State<BuyerHome> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 1);
 
@@ -39,7 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> _buildScreens() {
-    return [MyProfileScreen(), Home(), MyDocuments(), MyActivities()];
+    return [
+      BuyerProfileScreen(),
+      BuyerDashboard(),
+      BuyerDocuments(),
+      BuyerActivity()
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

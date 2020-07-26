@@ -6,6 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'OtpScreen.dart';
 
 class SignInPage extends StatefulWidget {
+  String userType;
+
+  SignInPage({this.userType});
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -173,6 +177,7 @@ class _SignInPageState extends State<SignInPage> {
                                                       mobileNumber:
                                                           _phoneNumberController
                                                               .text,
+                                                      userType: widget.userType,
                                                     ),
                                                   ));
                                             } else {

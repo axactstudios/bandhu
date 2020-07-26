@@ -1,14 +1,13 @@
-import 'package:bandhunew/MyHomePage.dart';
+import 'package:bandhunew/Classes/Profile.dart';
+import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../Classes/Profile.dart';
 import 'package:gps/gps.dart';
 
-class ProfileUpdate extends StatefulWidget {
+class BuyerProfileUpdate extends StatefulWidget {
   String stateName,
       districtName,
       producerName,
@@ -29,7 +28,7 @@ class ProfileUpdate extends StatefulWidget {
       access,
       shgName,
       userType;
-  ProfileUpdate(
+  BuyerProfileUpdate(
       this.stateName,
       this.districtName,
       this.producerName,
@@ -50,11 +49,12 @@ class ProfileUpdate extends StatefulWidget {
       this.access,
       this.shgName,
       this.userType);
+
   @override
-  _ProfileUpdateState createState() => _ProfileUpdateState();
+  _BuyerProfileUpdateState createState() => _BuyerProfileUpdateState();
 }
 
-class _ProfileUpdateState extends State<ProfileUpdate> {
+class _BuyerProfileUpdateState extends State<BuyerProfileUpdate> {
   final dbRef = FirebaseDatabase.instance.reference();
   final FirebaseAuth mAuth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
@@ -773,7 +773,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   void writeData() async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    dbRef.child('Users').child(uid)
+    dbRef.child('Buyers').child(uid)
       ..child('Details').set({
         'state': _stateName.text,
         'district': _districtName.text,
@@ -799,7 +799,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
       });
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MyHomePage()),
+      MaterialPageRoute(builder: (context) => BuyerHome()),
     );
   }
 }

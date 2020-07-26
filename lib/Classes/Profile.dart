@@ -18,7 +18,8 @@ class User {
       members,
       access,
       shgName,
-      federationName;
+      federationName,
+      userType;
 
   User(
       {this.stateName,
@@ -40,5 +41,6 @@ class User {
       this.members,
       this.access,
       this.shgName,
-      this.federationName});
+      this.federationName,
+      this.userType});
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'MyHomePage.dart';
 import 'MyHomePage.dart';
+import 'Screens/MainHome.dart';
 import 'auth/SignInPage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,19 +18,25 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    new Future.delayed(Duration(seconds: 3), () async {
-      FirebaseUser user = await mAuth.currentUser();
-      if (user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => MyHomePage()),
-        );
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => SignInPage()),
-        );
-      }
+    new Future.delayed(Duration(seconds: 3), () {
+//      FirebaseUser user = await mAuth.currentUser();
+//      if (user != null) {
+//        Navigator.pushReplacement(
+//          context,
+//          MaterialPageRoute(builder: (context) => MyHomePage()),
+//        );
+//      } else {
+//        Navigator.pushReplacement(
+//          context,
+//          MaterialPageRoute(builder: (context) => SignInPage()),
+//        );
+//      }
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainHome(),
+        ),
+      );
     });
     super.initState();
   }

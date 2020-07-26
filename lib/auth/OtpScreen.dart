@@ -1,5 +1,8 @@
 import 'package:bandhunew/MyHomePage.dart';
+import 'package:bandhunew/Profile/BuyerProfileEdit.dart';
 import 'package:bandhunew/Profile/ProfileEdit.dart';
+import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:bandhunew/Screens/Home.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +13,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'OTPinput.dart';
 
 class OTPScreen extends StatefulWidget {
-  final String mobileNumber;
-  OTPScreen({
-    Key key,
-    @required this.mobileNumber,
-  })  : assert(mobileNumber != null),
+  final String mobileNumber, userType;
+  OTPScreen({Key key, @required this.mobileNumber, @required this.userType})
+      : assert(mobileNumber != null),
         super(key: key);
   @override
   _OTPScreenState createState() => _OTPScreenState();
@@ -186,26 +187,61 @@ class _OTPScreenState extends State<OTPScreen> {
           .then((AuthResult value) async {
         if (value.user != null) {
           FirebaseUser user = await FirebaseAuth.instance.currentUser();
-          DatabaseReference useraddressref = FirebaseDatabase
-              .instance //Used the UID of the user to check if record exists in the database or not
-              .reference()
-              .child('Users')
-              .child(user.uid);
-          useraddressref.once().then((DataSnapshot snap) {
-            // ignore: non_constant_identifier_names
-            var DATA = snap.value;
-            if (DATA == null) {
-              Navigator.pushAndRemoveUntil(
+          if (widget.userType == 'Seller') {
+            DatabaseReference useraddressref = FirebaseDatabase
+                .instance //Used the UID of the user to check if record exists in the database or not
+                .reference()
+                .child('Users')
+                .child(user.uid)
+                .child('Details');
+            useraddressref.once().then((DataSnapshot snap) {
+              // ignore: non_constant_identifier_names
+              var DATA = snap.value;
+              if (DATA == null) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileEdit(
+                              userType: widget.userType,
+                            )),
+                    (Route<dynamic> route) => false);
+              } else {
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfileEdit()),
-                  (Route<dynamic> route) => false);
-            } else {
-              Navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ),
+                );
+              }
+            });
+          } else {
+            DatabaseReference useraddressref = FirebaseDatabase
+                .instance //Used the UID of the user to check if record exists in the database or not
+                .reference()
+                .child('Buyers')
+                .child(user.uid)
+                .child('Details');
+            useraddressref.once().then((DataSnapshot snap) {
+              // ignore: non_constant_identifier_names
+              var DATA = snap.value;
+              if (DATA == null) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BuyerProfileEdit(
+                              userType: widget.userType,
+                            )),
+                    (Route<dynamic> route) => false);
+              } else {
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                  (Route<dynamic> route) => false);
-            }
-          });
+                  MaterialPageRoute(
+                    builder: (context) => BuyerDashboard(),
+                  ),
+                );
+              }
+            });
+          }
         } else {
           showToast("Error validating OTP, try again", Colors.white);
         }
@@ -257,26 +293,61 @@ class _OTPScreenState extends State<OTPScreen> {
         .then((AuthResult value) async {
       if (value.user != null) {
         FirebaseUser user = await FirebaseAuth.instance.currentUser();
-        DatabaseReference useraddressref = FirebaseDatabase
-            .instance //Used the UID of the user to check if record exists in the database or not
-            .reference()
-            .child('Users')
-            .child(user.uid);
-        useraddressref.once().then((DataSnapshot snap) {
-          // ignore: non_constant_identifier_names
-          var DATA = snap.value;
-          if (DATA == null) {
-            Navigator.pushAndRemoveUntil(
+        if (widget.userType == 'Seller') {
+          DatabaseReference useraddressref = FirebaseDatabase
+              .instance //Used the UID of the user to check if record exists in the database or not
+              .reference()
+              .child('Users')
+              .child(user.uid)
+              .child('Details');
+          useraddressref.once().then((DataSnapshot snap) {
+            // ignore: non_constant_identifier_names
+            var DATA = snap.value;
+            if (DATA == null) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileEdit(
+                            userType: widget.userType,
+                          )),
+                  (Route<dynamic> route) => false);
+            } else {
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ProfileEdit()),
-                (Route<dynamic> route) => false);
-          } else {
-            Navigator.pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
+            }
+          });
+        } else {
+          DatabaseReference useraddressref = FirebaseDatabase
+              .instance //Used the UID of the user to check if record exists in the database or not
+              .reference()
+              .child('Buyers')
+              .child(user.uid)
+              .child('Details');
+          useraddressref.once().then((DataSnapshot snap) {
+            // ignore: non_constant_identifier_names
+            var DATA = snap.value;
+            if (DATA == null) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BuyerProfileEdit(
+                            userType: widget.userType,
+                          )),
+                  (Route<dynamic> route) => false);
+            } else {
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Home()),
-                (Route<dynamic> route) => false);
-          }
-        });
+                MaterialPageRoute(
+                  builder: (context) => BuyerDashboard(),
+                ),
+              );
+            }
+          });
+        }
       } else {
         showToast("Error validating OTP, try again", Colors.white);
       }

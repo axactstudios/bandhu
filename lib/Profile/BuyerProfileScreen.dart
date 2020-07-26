@@ -1,19 +1,19 @@
 import 'package:bandhunew/Classes/Profile.dart';
-import 'package:bandhunew/Profile/ProfileUpdate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'BuyerProfileUpdate.dart';
 
-class MyProfileScreen extends StatefulWidget {
+class BuyerProfileScreen extends StatefulWidget {
   @override
-  _MyProfileScreenState createState() => _MyProfileScreenState();
+  _BuyerProfileScreenState createState() => _BuyerProfileScreenState();
 }
 
-class _MyProfileScreenState extends State<MyProfileScreen> {
-  final dbRef = FirebaseDatabase.instance.reference().child('Users');
+class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
+  final dbRef = FirebaseDatabase.instance.reference().child('Buyers');
   final FirebaseAuth mAuth = FirebaseAuth.instance;
   double size1 = 15;
 
@@ -78,7 +78,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             child: InkWell(
               onTap: () {
                 pushNewScreen(context,
-                    screen: ProfileUpdate(
+                    screen: BuyerProfileUpdate(
                         userData.stateName,
                         userData.districtName,
                         userData.producerName,

@@ -1,60 +1,20 @@
-import 'package:bandhunew/MyHomePage.dart';
+import 'package:bandhunew/Classes/Profile.dart';
+import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../Classes/Profile.dart';
 import 'package:gps/gps.dart';
 
-class ProfileUpdate extends StatefulWidget {
-  String stateName,
-      districtName,
-      producerName,
-      fatherName,
-      age,
-      education,
-      religion,
-      sex,
-      maritalStatus,
-      address,
-      phNo1,
-      phNo2,
-      bankName,
-      accNo,
-      ifscCode,
-      coordinates,
-      members,
-      access,
-      shgName,
-      userType;
-  ProfileUpdate(
-      this.stateName,
-      this.districtName,
-      this.producerName,
-      this.fatherName,
-      this.age,
-      this.education,
-      this.religion,
-      this.sex,
-      this.maritalStatus,
-      this.address,
-      this.phNo1,
-      this.phNo2,
-      this.bankName,
-      this.accNo,
-      this.ifscCode,
-      this.coordinates,
-      this.members,
-      this.access,
-      this.shgName,
-      this.userType);
+class BuyerProfileEdit extends StatefulWidget {
+  String userType;
+  BuyerProfileEdit({this.userType});
   @override
-  _ProfileUpdateState createState() => _ProfileUpdateState();
+  _BuyerProfileEditState createState() => _BuyerProfileEditState();
 }
 
-class _ProfileUpdateState extends State<ProfileUpdate> {
+class _BuyerProfileEditState extends State<BuyerProfileEdit> {
   final dbRef = FirebaseDatabase.instance.reference();
   final FirebaseAuth mAuth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
@@ -94,6 +54,39 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
 
   User userData = User();
 
+  getDatabaseRef() async {
+    FirebaseUser user = await mAuth.currentUser();
+    String uid = user.uid;
+    DatabaseReference dbref = FirebaseDatabase.instance
+        .reference()
+        .child('Buyers')
+        .child(uid)
+        .child('Details');
+    await dbref.once().then((DataSnapshot snap) async {
+      // ignore: non_constant_identifier_names
+      userData.stateName = await snap.value['state'];
+      userData.districtName = await snap.value['district'];
+      userData.producerName = await snap.value['producer'];
+      userData.fatherName = await snap.value['fatherorhusband'];
+      userData.age = await snap.value['age'];
+      userData.education = await snap.value['education'];
+      userData.religion = await snap.value['religion'];
+      userData.sex = await snap.value['sex'];
+      userData.maritalStatus = await snap.value['maritalStatus'];
+      userData.address = await snap.value['address'];
+      userData.phNo1 = await snap.value['phNo1'];
+      userData.phNo2 = await snap.value['phNo2'];
+      userData.bankName = await snap.value['bankName'];
+      userData.accNo = await snap.value['accNo'];
+      userData.ifscCode = await snap.value['ifsc'];
+      userData.coordinates = await snap.value['coordinates'];
+      userData.members = await snap.value['members'];
+      userData.access = await snap.value['access'];
+      userData.shgName = await snap.value['shgName'];
+      setState(() {});
+    });
+  }
+
   TextEditingController _stateName;
   TextEditingController _districtName;
   TextEditingController _producerName;
@@ -114,29 +107,29 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   TextEditingController _shgName;
 
   initialize() {
-    _stateName = TextEditingController(text: widget.stateName);
-    _districtName = TextEditingController(text: widget.districtName);
-    _producerName = TextEditingController(text: widget.producerName);
-    _fatherName = TextEditingController(text: widget.fatherName);
-    _age = TextEditingController(text: widget.age);
-    _education = TextEditingController(text: widget.education);
-    _religion = TextEditingController(text: widget.religion);
-    _sex = TextEditingController(text: widget.sex);
-    _maritalStatus = TextEditingController(text: widget.maritalStatus);
-    _address = TextEditingController(text: widget.address);
-    _phNo1 = TextEditingController(text: widget.phNo1);
-    _phNo2 = TextEditingController(text: widget.phNo2);
-    _bankName = TextEditingController(text: widget.bankName);
-    _accNo = TextEditingController(text: widget.accNo);
-    _ifscCode = TextEditingController(text: widget.ifscCode);
-    _coordinates = TextEditingController(text: widget.coordinates);
-    _members = TextEditingController(text: widget.members);
-    _shgName = TextEditingController(text: widget.shgName);
-    access = widget.access;
+    _stateName = TextEditingController(text: "");
+    _districtName = TextEditingController(text: "");
+    _producerName = TextEditingController(text: "");
+    _fatherName = TextEditingController(text: "");
+    _age = TextEditingController(text: "");
+    _education = TextEditingController(text: "");
+    _religion = TextEditingController(text: "");
+    _sex = TextEditingController(text: "");
+    _maritalStatus = TextEditingController(text: "");
+    _address = TextEditingController(text: "");
+    _phNo1 = TextEditingController(text: "");
+    _phNo2 = TextEditingController(text: "");
+    _bankName = TextEditingController(text: "");
+    _accNo = TextEditingController(text: "");
+    _ifscCode = TextEditingController(text: "");
+    _coordinates = TextEditingController(text: "");
+    _members = TextEditingController(text: "");
+    _shgName = TextEditingController(text: "");
   }
 
   @override
   void initState() {
+    getDatabaseRef();
     initialize();
   }
 
@@ -719,11 +712,12 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(
-                                      fontFamily: 'Nudi',
-                                      fontWeight: FontWeight.bold),
+                                child: Container(
+                                  width: 110,
+                                  child: Text(
+                                    value,
+                                    style: TextStyle(fontFamily: 'Nudi'),
+                                  ),
                                 ),
                               );
                             }).toList(),
@@ -773,7 +767,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   void writeData() async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    dbRef.child('Users').child(uid)
+    dbRef.child('Buyers').child(uid)
       ..child('Details').set({
         'state': _stateName.text,
         'district': _districtName.text,
@@ -793,13 +787,13 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
         'coordinates': _coordinates.text,
         'members': _members.text,
         'access': access,
-        'shgName': _shgName.text,
         'federation': federation,
+        'shgName': _shgName.text,
         'userType': widget.userType
       });
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MyHomePage()),
+      MaterialPageRoute(builder: (context) => BuyerHome()),
     );
   }
 }
