@@ -15,21 +15,25 @@ class _MyActivitiesState extends State<MyActivities> {
   final dbRef = FirebaseDatabase.instance.reference().child('Users');
   final FirebaseAuth mAuth = FirebaseAuth.instance;
 
-  List<ActivityCard> activityList =  List();
+  List<ActivityCard> activityList = List();
 
   getDatabaseRef() async {
-    activityList.clear();
+    await activityList.clear();
     FirebaseUser user = await mAuth.currentUser();
-    String uid = user.uid;
+    String uid = await user.uid;
     DatabaseReference dbref =
         FirebaseDatabase.instance.reference().child('Activities').child(uid);
     await dbref.once().then((DataSnapshot snapshot) async {
       Map<dynamic, dynamic> values = await snapshot.value;
       values.forEach((key, values) {
+        print(values['Videos']);
         activityList.add(ActivityCard(Activity(
             name: values['activtyName'],
             rawMaterial: values['rawMaterial'],
-            avgProduction: values['avgProduction'])));
+            avgProduction: values['avgProduction'],
+            key: key,
+            imageList: values['Images'],
+            videoList: values['Videos'])));
         print(activityList);
       });
     });

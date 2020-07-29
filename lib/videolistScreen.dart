@@ -64,7 +64,7 @@ class _VideoListState extends State<VideoList> {
       var DATA = snap.value;
       vidList.clear();
       for (var key in KEYS) {
-        if (DATA[key]['activtyName'] == widget.activity.name) {
+        if (key == widget.activity.key) {
           print(widget.activity.name);
           vidList = (DATA[key]['Videos']);
         }

@@ -48,6 +48,7 @@ dependencies:
   flutter_automation: ^1.1.4
   gps: ^0.1.1
   diagonal: ^1.0.1
+  cached_network_image: ^2.2.0+1
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,12 @@
 import 'package:bandhunew/Classes/Activity.dart';
+import 'package:bandhunew/Screens/EditActivity.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/carousel/gf_carousel.dart';
+import 'package:getflutter/getflutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../videolistScreen.dart';
 
@@ -19,7 +22,8 @@ class _ActivityCardState extends State<ActivityCard> {
   @override
   void initState() {
     super.initState();
-    getUrls();
+    // getUrls();
+    imageList = widget.activity.imageList;
   }
 
   List<dynamic> imageList = [];
@@ -40,13 +44,44 @@ class _ActivityCardState extends State<ActivityCard> {
           padding: const EdgeInsets.only(left: 20.0, top: 20, bottom: 20),
           child: Column(
             children: <Widget>[
-              Text(
-                widget.activity.name,
-                style: TextStyle(
-                  fontFamily: 'Nudi',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 23,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    widget.activity.name,
+                    style: TextStyle(
+                      fontFamily: 'Nudi',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 23,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      for (int i = 0; i < imageList.length; i++) {
+                        print(
+                            "---------------__${imageList[0]}---------------------");
+                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditActivity(
+                                  activityToEdit: Activity(
+                                      name: widget.activity.name,
+                                      rawMaterial: widget.activity.rawMaterial,
+                                      avgProduction:
+                                          widget.activity.avgProduction,
+                                      key: widget.activity.key,
+                                      imageList: imageList,
+                                      videoList: widget.activity.videoList),
+                                )),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
+                      child: Icon(Icons.edit),
+                    ),
+                  )
+                ],
               ),
               SizedBox(
                 height: 5,
@@ -128,8 +163,26 @@ class _ActivityCardState extends State<ActivityCard> {
                                 child: ClipRRect(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5.0)),
-                                  child: Image.network(url,
-                                      fit: BoxFit.cover, width: 1000.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl: url,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    placeholder: (context, url) => Container(
+                                        height: 100,
+                                        width: 100,
+                                        child: GFLoader(
+                                          type: GFLoaderType.ios,
+                                        )),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             );
@@ -207,13 +260,13 @@ class _ActivityCardState extends State<ActivityCard> {
       var DATA = snap.value;
       imageList.clear();
       for (var key in KEYS) {
-        if (DATA[key]['activtyName'] == widget.activity.name) {
+        if (key == widget.activity.key) {
           print(widget.activity.name);
           imageList = (DATA[key]['Images']);
         }
       }
       setState(() {
-        print('imageList.length');
+        print("---------------__${imageList.length}---------------------");
       });
     });
   }
