@@ -16,7 +16,8 @@ import '../videolistScreen.dart';
 // ignore: must_be_immutable
 class BuyerActivityCard extends StatefulWidget {
   BuyerActivityClass activity;
-  BuyerActivityCard(this.activity);
+  BuildContext activitiesContext;
+  BuyerActivityCard(this.activity, this.activitiesContext);
   @override
   _BuyerActivityCardState createState() => _BuyerActivityCardState();
 }
@@ -39,6 +40,7 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
         .child(widget.activity.key)
         .remove();
     print(widget.activity.key);
+    Scaffold.of(widget.activitiesContext).setState(() {});
   }
 
   List<dynamic> imageList = [];
@@ -89,6 +91,8 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                                           key: widget.activity.key,
                                           imageList: imageList,
                                           videoList: widget.activity.videoList),
+                                      contextToRefresh:
+                                          widget.activitiesContext,
                                     )),
                           );
                         },

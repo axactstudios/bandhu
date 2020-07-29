@@ -18,9 +18,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../Classes/BuyerActivityClass.dart';
+import 'BuyerActivity.dart';
+
 class EditBuyerActivity extends StatefulWidget {
   BuyerActivityClass activityToEdit;
-  EditBuyerActivity({this.activityToEdit});
+  BuildContext contextToRefresh;
+  EditBuyerActivity({this.activityToEdit, this.contextToRefresh});
   @override
   _EditBuyerActivityState createState() => _EditBuyerActivityState();
 }
@@ -307,7 +311,7 @@ class _EditBuyerActivityState extends State<EditBuyerActivity> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => MyActivities()),
+                MaterialPageRoute(builder: (context) => BuyerActivity()),
               );
             },
             child: Icon(Icons.arrow_back_ios)),
@@ -542,7 +546,7 @@ class _EditBuyerActivityState extends State<EditBuyerActivity> {
   void writeData(String key) async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    dbRef.child('Buyers').child(uid).child('Activities').update({
+    dbRef.child('Buyers').child(uid).child('Activities').child(key).update({
       'activtyName': federation,
       'requirement': requirement.text,
       "Images": imageList,
@@ -558,7 +562,7 @@ class _EditBuyerActivityState extends State<EditBuyerActivity> {
         requirement.clear();
       });
     });
-
+    await Scaffold.of(widget.contextToRefresh).setState(() {});
     Fluttertoast.showToast(msg: 'Completed', toastLength: Toast.LENGTH_SHORT);
   }
 

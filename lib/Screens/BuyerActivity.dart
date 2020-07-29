@@ -42,7 +42,7 @@ class _BuyerActivityState extends State<BuyerActivity> {
         newActivity.key = key;
         newActivity.imageList = await values['Images'];
         newActivity.videoList = await values['Videos'];
-        buyerActivityList.add(BuyerActivityCard(newActivity));
+        buyerActivityList.add(BuyerActivityCard(newActivity, context));
         print(buyerActivityList);
       });
     });
@@ -97,6 +97,7 @@ class _BuyerActivityState extends State<BuyerActivity> {
             onPressed: () {
               print('Database ref called');
               getDatabaseRef();
+              setState(() {});
             },
             icon: Icon(
               Icons.refresh,
