@@ -386,7 +386,15 @@ class _EditActivityState extends State<EditActivity> {
               SizedBox(
                 height: 20,
               ),
-              Text('Tap on an image to edit'),
+              Text(
+                'Tap on an image to edit',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                      color: Color(0xFF6F35A5),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 17),
+                ),
+              ),
               imageList.length != 0
                   ? Container(
                       height: 200,
@@ -444,7 +452,19 @@ class _EditActivityState extends State<EditActivity> {
               SizedBox(
                 height: 20,
               ),
-              Text('Tap on an video to preview and  double tap to edit'),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Text(
+                  'Tap on an video to preview and  double tap to edit',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: Color(0xFF6F35A5),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 17),
+                  ),
+                ),
+              ),
               videoList != null
                   ? Container(
                       height: 100,
@@ -483,10 +503,14 @@ class _EditActivityState extends State<EditActivity> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text('No Videos'),
                     ),
+              SizedBox(
+                height: 20,
+              ),
               InkWell(
-                onTap: () {
+                onTap: () async {
                   setState(() {});
-                  writeData(widget.activityToEdit.key);
+                  await writeData(widget.activityToEdit.key);
+                  Navigator.pop(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
