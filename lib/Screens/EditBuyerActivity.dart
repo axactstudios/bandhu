@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bandhunew/Classes/Activity.dart';
+import 'package:bandhunew/Classes/BuyerActivityClass.dart';
 import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/Widgets/CustomTextField.dart';
 import 'package:bandhunew/videoPlayer.dart';
@@ -17,22 +18,22 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-class EditActivity extends StatefulWidget {
-  Activity activityToEdit;
-  EditActivity({this.activityToEdit});
+class EditBuyerActivity extends StatefulWidget {
+  BuyerActivityClass activityToEdit;
+  EditBuyerActivity({this.activityToEdit});
   @override
-  _EditActivityState createState() => _EditActivityState();
+  _EditBuyerActivityState createState() => _EditBuyerActivityState();
 }
 
 final activityName = TextEditingController();
-final rawMaterial = TextEditingController();
-final avgProduction = TextEditingController();
+
+final requirement = TextEditingController();
 List imageList = [];
 final dbRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth mAuth = FirebaseAuth.instance;
 String name = "";
 
-class _EditActivityState extends State<EditActivity> {
+class _EditBuyerActivityState extends State<EditBuyerActivity> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String federation = '';
   List<String> federationList = [
@@ -294,8 +295,7 @@ class _EditActivityState extends State<EditActivity> {
 
   @override
   Widget build(BuildContext context) {
-    rawMaterial.text = widget.activityToEdit.rawMaterial;
-    avgProduction.text = widget.activityToEdit.avgProduction;
+    requirement.text = widget.activityToEdit.requirement;
     federation = widget.activityToEdit.name;
     imageList = widget.activityToEdit.imageList;
     videoList = widget.activityToEdit.videoList;
@@ -380,8 +380,7 @@ class _EditActivityState extends State<EditActivity> {
                   ),
                 ),
               ),
-              CustomTextField(rawMaterial, 'Raw material used'),
-              CustomTextField(avgProduction, 'Average Production'),
+              CustomTextField(requirement, 'Requirement'),
               SizedBox(
                 height: 20,
               ),
@@ -545,8 +544,7 @@ class _EditActivityState extends State<EditActivity> {
     String uid = user.uid;
     dbRef.child('Activities').child(uid).child(key).update({
       'activtyName': federation,
-      'rawMaterial': rawMaterial.text,
-      'avgProduction': avgProduction.text,
+      'requirement': requirement.text,
       "Images": imageList,
       "Videos": videoList
     }).then((_) {
@@ -557,8 +555,7 @@ class _EditActivityState extends State<EditActivity> {
         videoList.clear();
 
         activityName.clear();
-        rawMaterial.clear();
-        avgProduction.clear();
+        requirement.clear();
       });
     });
 

@@ -1,40 +1,33 @@
 import 'dart:io';
-import 'package:bandhunew/Classes/Activity.dart';
 import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/Widgets/CustomTextField.dart';
-import 'package:bandhunew/videoPlayer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:getflutter/components/loader/gf_loader.dart';
-import 'package:getflutter/types/gf_loader_type.dart';
 import 'package:path/path.dart' as p;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:random_string/random_string.dart';
 
-class EditActivity extends StatefulWidget {
-  Activity activityToEdit;
-  EditActivity({this.activityToEdit});
+class NewBuyerActivity extends StatefulWidget {
   @override
-  _EditActivityState createState() => _EditActivityState();
+  _NewBuyerActivityState createState() => _NewBuyerActivityState();
 }
 
 final activityName = TextEditingController();
-final rawMaterial = TextEditingController();
-final avgProduction = TextEditingController();
-List imageList = [];
+
+final requirement = TextEditingController();
 final dbRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth mAuth = FirebaseAuth.instance;
 String name = "";
 
-class _EditActivityState extends State<EditActivity> {
+class _NewBuyerActivityState extends State<NewBuyerActivity> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String federation = '';
+  String federation = 'CrPÉ ºÁ¼É vÀmÉÖ';
   List<String> federationList = [
     'CrPÉ ºÁ¼É vÀmÉÖ',
     'CrPÉ £À¸Àðj',
@@ -70,16 +63,110 @@ class _EditActivityState extends State<EditActivity> {
   ProgressDialog pr;
   bool _isLoading = false;
   double _progress = 0;
-  List<dynamic> imageList = [];
-  List<dynamic> videoList = [];
+
   String unique;
   File file;
   String fileName = '';
   String operationText = '';
   bool isUploaded = true;
   String result = '';
+  List<String> imageUrls = [];
+  List<String> videoUrls = [];
 
-  void _uploadVideo(File file, String filename, String videoToChange) async {
+  Future<void> _uploadImage(File file, String filename) async {
+    final FirebaseStorage _storage =
+        FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    StorageReference storageReference;
+    storageReference =
+        _storage.ref().child("ActivityImages").child(user.uid).child(fileName);
+
+    final StorageUploadTask uploadTask = storageReference.putFile(file);
+    Fluttertoast.showToast(msg: 'Uploading...', gravity: ToastGravity.CENTER);
+    uploadTask.events.listen((event) {
+      setState(() {
+        _isLoading = true;
+        _progress = (event.snapshot.bytesTransferred.toDouble() /
+                event.snapshot.totalByteCount.toDouble()) *
+            100;
+        print('${_progress.toStringAsFixed(2)}%');
+        pr.update(
+          progress: double.parse(_progress.toStringAsFixed(2)),
+          maxProgress: 100.0,
+        );
+      });
+    }).onError((error) {
+      _scaffoldKey.currentState.showSnackBar(new SnackBar(
+        content: new Text(error.toString()),
+        backgroundColor: Colors.red,
+      ));
+    });
+    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+    final String url = (await downloadUrl.ref.getDownloadURL());
+    print("URL is $url");
+    imageUrls.add(url);
+    Fluttertoast.showToast(
+        msg: 'Upload Complete', gravity: ToastGravity.CENTER);
+    setState(() {});
+  }
+
+  Future imagePicker(BuildContext context) async {
+    try {
+      file = await FilePicker.getFile(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'pdf', 'png', 'jpeg'],
+      );
+      setState(() {
+        fileName = p.basename(file.path);
+      });
+      print(fileName);
+      pr = ProgressDialog(
+        context,
+        type: ProgressDialogType.Download,
+        textDirection: TextDirection.rtl,
+        isDismissible: true,
+      );
+      pr.style(
+        message: 'Uploading photos...',
+        borderRadius: 10.0,
+        backgroundColor: Colors.white,
+        elevation: 10.0,
+        insetAnimCurve: Curves.easeInOut,
+        progressWidgetAlignment: Alignment.center,
+        progressTextStyle: TextStyle(
+            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+        messageTextStyle: TextStyle(
+            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+      );
+      await pr.show();
+
+      await _uploadImage(file, fileName);
+    } on PlatformException catch (e) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Sorry...'),
+              content: Text('Unsupported exception: $e'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }
+    setState(() async {
+      await pr.hide();
+      print(fileName);
+    });
+  }
+
+  void _uploadVideo(File file, String filename) async {
     final FirebaseStorage _storage =
         FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -111,24 +198,15 @@ class _EditActivityState extends State<EditActivity> {
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
     final String url = (await downloadUrl.ref.getDownloadURL());
     print("URL is $url");
-    for (int i = 0; i < videoList.length; i++) {
-      if (videoList[i] == videoToChange) {
-        videoList[i] = url;
-      }
-    }
+    videoUrls.add(url);
     Fluttertoast.showToast(
         msg: 'Upload Complete', gravity: ToastGravity.CENTER);
     setState(() async {
-      for (int i = 0; i < videoList.length; i++) {
-        print(
-            '!!!!!!!!!!!!!!!!!!!!!!!!!!!!${videoList[i]}!!!!!!!!!!!!!!!!!!!!!!!!!');
-      }
-
       await pr.hide();
     });
   }
 
-  Future videoPicker(BuildContext context, String videoToChange) async {
+  Future videoPicker(BuildContext context) async {
     try {
       file = await FilePicker.getFile(
         type: FileType.video,
@@ -156,7 +234,7 @@ class _EditActivityState extends State<EditActivity> {
             color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
       );
       await pr.show();
-      _uploadVideo(file, fileName, videoToChange);
+      _uploadVideo(file, fileName);
     } on PlatformException catch (e) {
       showDialog(
           context: context,
@@ -178,128 +256,15 @@ class _EditActivityState extends State<EditActivity> {
     setState(() async {
       print(fileName);
     });
-  }
-
-  Future<void> _uploadImage(
-      File file, String filename, String urlToBeReplaced) async {
-    final FirebaseStorage _storage =
-        FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-
-    StorageReference storageReference;
-    storageReference =
-        _storage.ref().child("ActivityImages").child(user.uid).child(fileName);
-
-    final StorageUploadTask uploadTask = storageReference.putFile(file);
-    Fluttertoast.showToast(msg: 'Uploading...', gravity: ToastGravity.BOTTOM);
-    uploadTask.events.listen((event) {
-      setState(() {
-        _isLoading = true;
-        _progress = (event.snapshot.bytesTransferred.toDouble() /
-                event.snapshot.totalByteCount.toDouble()) *
-            100;
-        print('${_progress.toStringAsFixed(2)}%');
-        pr.update(
-          progress: double.parse(_progress.toStringAsFixed(2)),
-          maxProgress: 100.0,
-        );
-      });
-    }).onError((error) {
-      print(
-          '!!!!!!!!!!!!!!!!!!!!!!!!!!!!${error.toString()}!!!!!!!!!!!!!!!!!!!!!!!!!');
-      _scaffoldKey.currentState.showSnackBar(new SnackBar(
-        content: new Text(error.toString()),
-        backgroundColor: Colors.red,
-      ));
-    });
-    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    final String url = (await downloadUrl.ref.getDownloadURL());
-    print("URL is $url");
-    for (int i = 0; i < imageList.length; i++) {
-      if (imageList[i] == urlToBeReplaced) {
-        imageList[i] = url;
-      }
-    }
-    Fluttertoast.showToast(
-        msg: 'Upload Complete', gravity: ToastGravity.CENTER);
-    setState(() async {
-      await pr.hide();
-    });
-  }
-
-  Future imagePicker(BuildContext context, String urlToBeReplaced) async {
-    try {
-      file = await FilePicker.getFile(
-        type: FileType.custom,
-        allowedExtensions: ['jpg', 'png', 'jpeg'],
-      );
-      await setState(() {
-        fileName = p.basename(file.path);
-      });
-      print(fileName);
-      pr = ProgressDialog(
-        context,
-        type: ProgressDialogType.Download,
-        textDirection: TextDirection.rtl,
-        isDismissible: true,
-      );
-      pr.style(
-        message: 'Uploading photos...',
-        borderRadius: 10.0,
-        backgroundColor: Colors.white,
-        elevation: 10.0,
-        insetAnimCurve: Curves.easeInOut,
-        progressWidgetAlignment: Alignment.center,
-        progressTextStyle: TextStyle(
-            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
-        messageTextStyle: TextStyle(
-            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
-      );
-      await pr.show();
-
-      await _uploadImage(file, fileName, urlToBeReplaced);
-
-      setState(() async {
-        //await pr.hide();
-        print(fileName);
-      });
-    } on PlatformException catch (e) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Sorry...'),
-              content: Text('Unsupported exception: $e'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    }
-//    setState(() async {
-//      await pr.hide();
-//      print(fileName);
-//    });
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
-    rawMaterial.text = widget.activityToEdit.rawMaterial;
-    avgProduction.text = widget.activityToEdit.avgProduction;
-    federation = widget.activityToEdit.name;
-    imageList = widget.activityToEdit.imageList;
-    videoList = widget.activityToEdit.videoList;
-    for (int i = 0; i < imageList.length; i++) {}
+    int keyLength = randomBetween(5, 15);
+    String key = randomAlpha(keyLength);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -380,136 +345,120 @@ class _EditActivityState extends State<EditActivity> {
                   ),
                 ),
               ),
-              CustomTextField(rawMaterial, 'Raw material used'),
-              CustomTextField(avgProduction, 'Average Production'),
+              CustomTextField(requirement, 'Requirement'),
               SizedBox(
                 height: 20,
               ),
-              Text(
-                'Tap on an image to edit',
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      color: Color(0xFF6F35A5),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 17),
-                ),
-              ),
-              imageList.length != 0
-                  ? Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: imageList.length,
-                        itemBuilder: (context, index) {
-                          print(
-                              "---------------__${imageList[index]}---------------------");
-                          return InkWell(
-                            onTap: () {
-                              imagePicker(context, imageList[index]);
-                            },
-                            child: Card(
-                              elevation: 8,
-                              margin: EdgeInsets.all(8.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageList[index],
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    placeholder: (context, url) => Container(
-                                        height: 100,
-                                        width: 100,
-                                        child: GFLoader(
-                                          type: GFLoaderType.ios,
-                                        )),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                  ),
-                                ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(27, 0, 27, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black, width: 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Images : ',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          imageUrls.length.toString(),
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            imagePicker(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFF6F35A5),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
                               ),
                             ),
-                          );
-                        },
-                      ),
-                    )
-                  : GFLoader(
-                      type: GFLoaderType.ios,
+                          ),
+                        ),
+                      ],
                     ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Text(
-                  'Tap on an video to preview and  double tap to edit',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: Color(0xFF6F35A5),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 17),
                   ),
                 ),
               ),
-              videoList != null
-                  ? Container(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: videoList.length,
-                        itemBuilder: (context, index) {
-                          print(
-                              "---------------__${videoList[index]}---------------------");
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        VideoPlayerScreen(videoList[index])),
-                              );
-                            },
-                            onDoubleTap: () {
-                              videoPicker(context, videoList[index]);
-                            },
-                            child: Card(
-                                elevation: 8,
-                                margin: EdgeInsets.all(8.0),
-                                child: Container(
-                                    alignment: Alignment.center,
-                                    height: 100,
-                                    width: 100,
-                                    child: Text('Video ${index + 1}'))),
-                          );
-                        },
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('No Videos'),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(27, 0, 27, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black, width: 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Videos : ',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        Text(
+                          videoUrls.length.toString(),
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            videoPicker(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFF6F35A5),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+//                        ListView.builder(
+//                            itemCount: imageUrls.length,
+//                            itemBuilder: (context, index) {
+//                              var item = imageUrls[index];
+//                              return Image.network(item);
+//                            }),
+                      ],
                     ),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
               InkWell(
-                onTap: () async {
+                onTap: () {
                   setState(() {});
-                  await writeData(widget.activityToEdit.key);
-                  Navigator.pop(context);
+                  writeData(key);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -545,48 +494,45 @@ class _EditActivityState extends State<EditActivity> {
     String uid = user.uid;
     dbRef.child('Activities').child(uid).child(key).update({
       'activtyName': federation,
-      'rawMaterial': rawMaterial.text,
-      'avgProduction': avgProduction.text,
-      "Images": imageList,
-      "Videos": videoList
+      'requirement': requirement.text,
+      "Images": imageUrls,
+      "Videos": videoUrls
     }).then((_) {
       Fluttertoast.showToast(msg: "Successfully Uploaded");
 
       setState(() {
-        imageList.clear();
-        videoList.clear();
+        imageUrls.clear();
+        videoUrls.clear();
 
         activityName.clear();
-        rawMaterial.clear();
-        avgProduction.clear();
+        requirement.clear();
       });
     });
 
-    Fluttertoast.showToast(msg: 'Completed', toastLength: Toast.LENGTH_SHORT);
-  }
+//    dbRef
+//        .child('Activities')
+//        .child(user.uid)
+//        .child(key)
+//        .update({"Images": imageUrls}).then((_) {
+//      Fluttertoast.showToast(msg: "Successfully Uploaded");
+//
+//      setState(() {
+//        imageUrls.clear();
+//      });
+//    });
+//
+//    dbRef
+//        .child('Activities')
+//        .child(user.uid)
+//        .child(key)
+//        .update({"Videos": videoUrls}).then((_) {
+//      Fluttertoast.showToast(msg: "Successfully Uploaded!");
+//
+//      setState(() {
+//        videoUrls.clear();
+//      });
+//    });
 
-  getUrls() async {
-    final FirebaseUser user = await mAuth.currentUser();
-    String uid = user.uid;
-    print(user.uid);
-    DatabaseReference urlRef = FirebaseDatabase.instance
-        .reference()
-        .child('Activities')
-        .child(user.uid);
-    print(widget.activityToEdit.name);
-    urlRef.once().then((DataSnapshot snap) {
-      // ignore: non_constant_identifier_names
-      var KEYS = snap.value.keys;
-      // ignore: non_constant_identifier_names
-      var DATA = snap.value;
-      imageList.clear();
-      for (var key in KEYS) {
-        if (key == widget.activityToEdit.key) {
-          print(widget.activityToEdit.name);
-          imageList = (DATA[key]['Images']);
-        }
-      }
-      setState(() {});
-    });
+    Fluttertoast.showToast(msg: 'Completed', toastLength: Toast.LENGTH_SHORT);
   }
 }
