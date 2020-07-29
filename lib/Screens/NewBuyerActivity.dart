@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bandhunew/Screens/Activities.dart';
+import 'package:bandhunew/Screens/BuyerActivity.dart';
 import 'package:bandhunew/Widgets/CustomTextField.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -272,7 +273,9 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => MyActivities()),
+                MaterialPageRoute(
+                  builder: (context) => BuyerActivity(),
+                ),
               );
             },
             child: Icon(Icons.arrow_back_ios)),
@@ -492,7 +495,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
   void writeData(String key) async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    dbRef.child('Activities').child(uid).child(key).update({
+    dbRef.child('Buyers').child(uid).child('Activities').child(key).update({
       'activtyName': federation,
       'requirement': requirement.text,
       "Images": imageUrls,

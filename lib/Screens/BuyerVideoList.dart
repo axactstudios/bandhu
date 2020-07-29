@@ -52,10 +52,8 @@ class _BuyerVideoListState extends State<BuyerVideoList> {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
     print(user.uid);
-    DatabaseReference urlRef = FirebaseDatabase.instance
-        .reference()
-        .child('Activities')
-        .child(user.uid);
+    DatabaseReference urlRef = FirebaseDatabase.instance.reference()
+      ..child('Buyers').child(uid).child('Activities');
     print(widget.activity.name);
     urlRef.once().then((DataSnapshot snap) {
       // ignore: non_constant_identifier_names

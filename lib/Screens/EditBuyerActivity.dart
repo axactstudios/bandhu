@@ -542,7 +542,7 @@ class _EditBuyerActivityState extends State<EditBuyerActivity> {
   void writeData(String key) async {
     final FirebaseUser user = await mAuth.currentUser();
     String uid = user.uid;
-    dbRef.child('Activities').child(uid).child(key).update({
+    dbRef.child('Buyers').child(uid).child('Activities').update({
       'activtyName': federation,
       'requirement': requirement.text,
       "Images": imageList,
