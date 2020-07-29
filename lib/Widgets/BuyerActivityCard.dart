@@ -29,6 +29,18 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
     imageList = widget.activity.imageList;
   }
 
+  void delete() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    var ref = FirebaseDatabase.instance
+        .reference()
+        .child('Buyers')
+        .child(user.uid)
+        .child('Activities')
+        .child(widget.activity.key)
+        .remove();
+    print(widget.activity.key);
+  }
+
   List<dynamic> imageList = [];
 
   FirebaseAuth mAuth = FirebaseAuth.instance;
@@ -58,30 +70,44 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                       fontSize: 23,
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      for (int i = 0; i < imageList.length; i++) {
-                        print(
-                            "---------------__${imageList[0]}---------------------");
-                      }
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditBuyerActivity(
-                                  activityToEdit: BuyerActivityClass(
-                                      name: widget.activity.name,
-                                      requirement: widget.activity.requirement,
-                                      key: widget.activity.key,
-                                      imageList: imageList,
-                                      videoList: widget.activity.videoList),
-                                )),
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
-                      child: Icon(Icons.edit),
-                    ),
-                  )
+                  Row(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          for (int i = 0; i < imageList.length; i++) {
+                            print(
+                                "---------------__${imageList[0]}---------------------");
+                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditBuyerActivity(
+                                      activityToEdit: BuyerActivityClass(
+                                          name: widget.activity.name,
+                                          requirement:
+                                              widget.activity.requirement,
+                                          key: widget.activity.key,
+                                          imageList: imageList,
+                                          videoList: widget.activity.videoList),
+                                    )),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
+                          child: Icon(Icons.edit),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          delete();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                          child: Icon(Icons.delete),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
               SizedBox(

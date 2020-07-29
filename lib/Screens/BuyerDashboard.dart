@@ -21,10 +21,7 @@ class _BuyerDashboardState extends State<BuyerDashboard> {
     switch (choice.title) {
       case 'Main Home':
         FirebaseAuth.instance.signOut();
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MainHome()),
-        );
+        pushNewScreen(context, screen: MainHome(), withNavBar: false);
         break;
       case 'Profile':
         Navigator.push(
