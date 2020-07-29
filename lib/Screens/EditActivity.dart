@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bandhunew/Classes/Activity.dart';
 import 'package:bandhunew/Screens/Activities.dart';
 import 'package:bandhunew/Widgets/CustomTextField.dart';
+import 'package:bandhunew/videoPlayer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -78,8 +79,107 @@ class _EditActivityState extends State<EditActivity> {
   String operationText = '';
   bool isUploaded = true;
   String result = '';
-  List<String> imageUrls = [];
-  List<String> videoUrls = [];
+
+  void _uploadVideo(File file, String filename, String videoToChange) async {
+    final FirebaseStorage _storage =
+        FirebaseStorage(storageBucket: 'gs://bandhu-d4b07.appspot.com');
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    StorageReference storageReference;
+    storageReference =
+        _storage.ref().child("ActivityVideos").child(user.uid).child(fileName);
+
+    final StorageUploadTask uploadTask = storageReference.putFile(file);
+    Fluttertoast.showToast(msg: 'Uploading...', gravity: ToastGravity.CENTER);
+    uploadTask.events.listen((event) {
+      setState(() {
+        _isLoading = true;
+        _progress = (event.snapshot.bytesTransferred.toDouble() /
+                event.snapshot.totalByteCount.toDouble()) *
+            100;
+        print('${_progress.toStringAsFixed(2)}%');
+        pr.update(
+          progress: double.parse(_progress.toStringAsFixed(2)),
+          maxProgress: 100.0,
+        );
+      });
+    }).onError((error) {
+      _scaffoldKey.currentState.showSnackBar(new SnackBar(
+        content: new Text(error.toString()),
+        backgroundColor: Colors.red,
+      ));
+    });
+    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+    final String url = (await downloadUrl.ref.getDownloadURL());
+    print("URL is $url");
+    for (int i = 0; i < videoList.length; i++) {
+      if (videoList[i] == videoToChange) {
+        videoList[i] = url;
+      }
+    }
+    Fluttertoast.showToast(
+        msg: 'Upload Complete', gravity: ToastGravity.CENTER);
+    setState(() async {
+      for (int i = 0; i < videoList.length; i++) {
+        print(
+            '!!!!!!!!!!!!!!!!!!!!!!!!!!!!${videoList[i]}!!!!!!!!!!!!!!!!!!!!!!!!!');
+      }
+
+      await pr.hide();
+    });
+  }
+
+  Future videoPicker(BuildContext context, String videoToChange) async {
+    try {
+      file = await FilePicker.getFile(
+        type: FileType.video,
+      );
+      setState(() {
+        fileName = p.basename(file.path);
+      });
+      print(fileName);
+      pr = ProgressDialog(
+        context,
+        type: ProgressDialogType.Download,
+        textDirection: TextDirection.rtl,
+        isDismissible: true,
+      );
+      pr.style(
+        message: 'Uploading videos...',
+        borderRadius: 10.0,
+        backgroundColor: Colors.white,
+        elevation: 10.0,
+        insetAnimCurve: Curves.easeInOut,
+        progressWidgetAlignment: Alignment.center,
+        progressTextStyle: TextStyle(
+            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+        messageTextStyle: TextStyle(
+            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+      );
+      await pr.show();
+      _uploadVideo(file, fileName, videoToChange);
+    } on PlatformException catch (e) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Sorry...'),
+              content: Text('Unsupported exception: $e'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }
+    setState(() async {
+      print(fileName);
+    });
+  }
 
   Future<void> _uploadImage(
       File file, String filename, String urlToBeReplaced) async {
@@ -347,7 +447,7 @@ class _EditActivityState extends State<EditActivity> {
               Text('Tap on an video to preview and  double tap to edit'),
               videoList != null
                   ? Container(
-                      height: 200,
+                      height: 100,
                       width: MediaQuery.of(context).size.width,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -357,12 +457,24 @@ class _EditActivityState extends State<EditActivity> {
                               "---------------__${videoList[index]}---------------------");
                           return InkWell(
                             onTap: () {
-                              imagePicker(context, videoList[index]);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VideoPlayerScreen(videoList[index])),
+                              );
+                            },
+                            onDoubleTap: () {
+                              videoPicker(context, videoList[index]);
                             },
                             child: Card(
                                 elevation: 8,
                                 margin: EdgeInsets.all(8.0),
-                                child: Text('Video ${index + 1}')),
+                                child: Container(
+                                    alignment: Alignment.center,
+                                    height: 100,
+                                    width: 100,
+                                    child: Text('Video ${index + 1}'))),
                           );
                         },
                       ),
@@ -413,13 +525,13 @@ class _EditActivityState extends State<EditActivity> {
       'rawMaterial': rawMaterial.text,
       'avgProduction': avgProduction.text,
       "Images": imageList,
-      "Videos": videoUrls
+      "Videos": videoList
     }).then((_) {
       Fluttertoast.showToast(msg: "Successfully Uploaded");
 
       setState(() {
         imageList.clear();
-        videoUrls.clear();
+        videoList.clear();
 
         activityName.clear();
         rawMaterial.clear();
