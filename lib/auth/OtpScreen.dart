@@ -236,7 +236,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BuyerDashboard(),
+                    builder: (context) => BuyerHome(),
                   ),
                 );
               }

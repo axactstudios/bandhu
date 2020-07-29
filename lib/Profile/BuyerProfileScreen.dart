@@ -25,7 +25,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
     var ref = dbRef.child(uid).child('Details');
     DatabaseReference dbref = FirebaseDatabase.instance
         .reference()
-        .child('Users')
+        .child('Buyers')
         .child(uid)
         .child('Details');
     await dbref.once().then((DataSnapshot snap) async {

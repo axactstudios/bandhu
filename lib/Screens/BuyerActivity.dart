@@ -22,21 +22,27 @@ class _BuyerActivityState extends State<BuyerActivity> {
   List<BuyerActivityCard> buyerActivityList = List();
 
   getDatabaseRef() async {
+    print('The function has been called');
     await buyerActivityList.clear();
     FirebaseUser user = await mAuth.currentUser();
     String uid = await user.uid;
-    DatabaseReference dbref =
-        FirebaseDatabase.instance.reference().child('Activities').child(uid);
+    DatabaseReference dbref = FirebaseDatabase.instance
+        .reference()
+        .child('Buyers')
+        .child(uid)
+        .child('Activities');
     await dbref.once().then((DataSnapshot snapshot) async {
       Map<dynamic, dynamic> values = await snapshot.value;
-      values.forEach((key, values) {
-        print(values['Videos']);
-        buyerActivityList.add(BuyerActivityCard(BuyerActivityClass(
-            name: values['activtyName'],
-            requirement: values['requirement'],
-            key: key,
-            imageList: values['Images'],
-            videoList: values['Videos'])));
+      values.forEach((key, values) async {
+        //print(values['Videos']);
+        BuyerActivityClass newActivity = BuyerActivityClass();
+
+        newActivity.name = await values['activtyName'];
+        newActivity.requirement = await values['requirement'];
+        newActivity.key = key;
+        newActivity.imageList = await values['Images'];
+        newActivity.videoList = await values['Videos'];
+        buyerActivityList.add(BuyerActivityCard(newActivity));
         print(buyerActivityList);
       });
     });
@@ -77,7 +83,9 @@ class _BuyerActivityState extends State<BuyerActivity> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NewBuyerActivity()),
+                MaterialPageRoute(
+                  builder: (context) => NewBuyerActivity(),
+                ),
               );
             },
             icon: Icon(
@@ -87,6 +95,7 @@ class _BuyerActivityState extends State<BuyerActivity> {
           ),
           IconButton(
             onPressed: () {
+              print('Database ref called');
               getDatabaseRef();
             },
             icon: Icon(
