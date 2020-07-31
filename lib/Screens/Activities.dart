@@ -68,7 +68,7 @@ class _MyActivitiesState extends State<MyActivities> {
             ),
           ),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -95,11 +95,12 @@ class _MyActivitiesState extends State<MyActivities> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          alignment: Alignment.center,
           child: activityList.length != 0
               ? Column(
                   children: activityList,
                 )
-              : Center(child: Text('Please Reload')),
+              : Center(child: Text('No Activities')),
         ),
       ),
     );

@@ -313,10 +313,10 @@ class _EditActivityState extends State<EditActivity> {
             child: Icon(Icons.arrow_back_ios)),
         title: Text(
           'Add new activity',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
               textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25)),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -341,9 +341,9 @@ class _EditActivityState extends State<EditActivity> {
                       children: <Widget>[
                         Text(
                           'Activity : ',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(
-                                color: Color(0xFF6F35A5),
+                                color: Color(0xFFA96DA3),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 17),
                           ),
@@ -387,9 +387,9 @@ class _EditActivityState extends State<EditActivity> {
               ),
               Text(
                 'Tap on an image to edit',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.varelaRound(
                   textStyle: TextStyle(
-                      color: Color(0xFF6F35A5),
+                      color: Color(0xFFA96DA3),
                       fontWeight: FontWeight.w400,
                       fontSize: 17),
                 ),
@@ -456,9 +456,9 @@ class _EditActivityState extends State<EditActivity> {
                 child: Text(
                   'Tap on an video to preview and  double tap to edit',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.varelaRound(
                     textStyle: TextStyle(
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         fontWeight: FontWeight.w400,
                         fontSize: 17),
                   ),
@@ -513,8 +513,8 @@ class _EditActivityState extends State<EditActivity> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF6F35A5),
-                    borderRadius: BorderRadius.circular(33),
+                    color: Color(0xFFA96DA3),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   width: ((MediaQuery.of(context).size).width * 0.8),
                   child: Center(
@@ -522,7 +522,7 @@ class _EditActivityState extends State<EditActivity> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Publish',
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w400,

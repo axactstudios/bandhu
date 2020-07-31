@@ -147,12 +147,12 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
       appBar: AppBar(
         title: Text(
           'Bandhu',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
               textStyle: TextStyle(
             fontWeight: FontWeight.w400,
           )),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -163,7 +163,7 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
               children: <Widget>[
                 Text(
                   'Profile Setup',
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 30,
@@ -185,9 +185,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "State Name"),
@@ -209,9 +209,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "District"),
@@ -233,9 +233,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Producer's Name"),
@@ -257,9 +257,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Father/Husband's Name"),
@@ -281,9 +281,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Age"),
@@ -305,9 +305,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Education qualification"),
@@ -329,9 +329,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Religion"),
@@ -353,9 +353,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Gender (Male, Female or Other)"),
@@ -377,9 +377,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Marital status"),
@@ -403,9 +403,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Enter your address"),
@@ -427,9 +427,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Primary mobile number"),
@@ -451,9 +451,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Secondary mobile number"),
@@ -475,9 +475,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Bank name"),
@@ -499,9 +499,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Bank account number"),
@@ -523,9 +523,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Bank\'s IFSC Code"),
@@ -547,9 +547,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         suffixIcon: InkWell(
@@ -562,7 +562,7 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                           },
                           child: Icon(
                             Icons.gps_fixed,
-                            color: Color(0xFF6F35A5),
+                            color: Color(0xFFA96DA3),
                           ),
                         ),
                         hintText: "Your co-ordinates"),
@@ -584,9 +584,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Number of members"),
@@ -606,9 +606,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         children: <Widget>[
                           Text(
                             'Access : ',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.varelaRound(
                               textStyle: TextStyle(
-                                  color: Color(0xFF6F35A5),
+                                  color: Color(0xFFA96DA3),
                                   fontWeight: FontWeight.w400,
                                   fontSize: 17),
                             ),
@@ -621,7 +621,7 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                             value: access,
                             icon: Icon(
                               Icons.arrow_drop_down,
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                             ),
                             iconSize: 18,
                             onChanged: (String newVal) {
@@ -636,9 +636,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                                 child: Text(
                                   value,
                                   textAlign: TextAlign.right,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                     textStyle: TextStyle(
-                                      color: Color(0xFF6F35A5),
+                                      color: Color(0xFFA96DA3),
                                     ),
                                   ),
                                 ),
@@ -666,9 +666,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),
-                        hintStyle: GoogleFonts.poppins(
+                        hintStyle: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               fontWeight: FontWeight.w400),
                         ),
                         hintText: "Enter your SHG Name"),
@@ -688,9 +688,9 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                         children: <Widget>[
                           Text(
                             'Federation : ',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.varelaRound(
                               textStyle: TextStyle(
-                                  color: Color(0xFF6F35A5),
+                                  color: Color(0xFFA96DA3),
                                   fontWeight: FontWeight.w400,
                                   fontSize: 17),
                             ),
@@ -736,8 +736,8 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFF6F35A5),
-                        borderRadius: BorderRadius.circular(33),
+                        color: Color(0xFFA96DA3),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       width: ((MediaQuery.of(context).size).width * 0.93),
                       child: Center(
@@ -745,7 +745,7 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                           padding: const EdgeInsets.all(18.0),
                           child: Text(
                             'SUBMIT',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.varelaRound(
                                 fontWeight: FontWeight.w400,
                                 letterSpacing: 2,
                                 color: Colors.white,

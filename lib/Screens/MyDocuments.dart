@@ -157,11 +157,11 @@ class _MyDocumentsState extends State<MyDocuments> {
       appBar: AppBar(
         title: Text(
           'Documents',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
             textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25),
           ),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
       ),
       body: Container(
         child: SafeArea(
@@ -174,7 +174,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                   child: Center(
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       color: Color(0xFFF1E6FF),
                       child: Padding(
@@ -185,7 +185,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                               flex: 1,
                               child: Text(
                                 'AADHAR CARD',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.varelaRound(
                                   textStyle: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 23,
@@ -205,7 +205,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                             flex: 1,
                                             child: Text(
                                               'Status :',
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.varelaRound(
                                                 textStyle: TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
@@ -217,7 +217,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                             flex: 1,
                                             child: Text(
                                               'Not Uploaded',
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.varelaRound(
                                                 textStyle: TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
@@ -235,7 +235,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                             flex: 1,
                                             child: Text(
                                               'Status :',
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.varelaRound(
                                                 textStyle: TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
@@ -247,7 +247,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                             flex: 1,
                                             child: Text(
                                               'Uploaded',
-                                              style: GoogleFonts.poppins(
+                                              style: GoogleFonts.varelaRound(
                                                 textStyle: TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
@@ -280,8 +280,8 @@ class _MyDocumentsState extends State<MyDocuments> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF6F35A5),
-                                    borderRadius: BorderRadius.circular(33),
+                                    color: Color(0xFFA96DA3),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   width: ((MediaQuery.of(context).size).width *
                                       0.8),
@@ -290,7 +290,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'Upload',
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.varelaRound(
                                           textStyle: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -324,7 +324,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                               flex: 1,
                               child: Text(
                                 'PAN CARD',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.varelaRound(
                                   textStyle: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 23,
@@ -344,7 +344,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Status : ',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -356,7 +356,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Not Uploaded',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -374,7 +374,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Status : ',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -386,7 +386,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Uploaded',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -420,8 +420,8 @@ class _MyDocumentsState extends State<MyDocuments> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF6F35A5),
-                                    borderRadius: BorderRadius.circular(33),
+                                    color: Color(0xFFA96DA3),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   width: ((MediaQuery.of(context).size).width *
                                       0.8),
@@ -430,7 +430,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'Upload',
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.varelaRound(
                                           textStyle: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -464,7 +464,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                               flex: 1,
                               child: Text(
                                 'GST/TIN No.',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.varelaRound(
                                   textStyle: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 23,
@@ -484,7 +484,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Status : ',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -496,7 +496,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Not Uploaded',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -514,7 +514,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Status : ',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -526,7 +526,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                           flex: 1,
                                           child: Text(
                                             'Uploaded',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.varelaRound(
                                               textStyle: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 20,
@@ -560,8 +560,8 @@ class _MyDocumentsState extends State<MyDocuments> {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF6F35A5),
-                                    borderRadius: BorderRadius.circular(33),
+                                    color: Color(0xFFA96DA3),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   width: ((MediaQuery.of(context).size).width *
                                       0.8),
@@ -570,7 +570,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'Upload',
-                                        style: GoogleFonts.poppins(
+                                        style: GoogleFonts.varelaRound(
                                           textStyle: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,

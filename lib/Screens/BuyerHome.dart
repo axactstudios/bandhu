@@ -48,26 +48,26 @@ class _BuyerHomeState extends State<BuyerHome> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
-        title: ("Second Screen"),
-        activeColor: Color(0xFF6F35A5),
+        title: ("Profile"),
+        activeColor: Color(0xFFA96DA3),
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColor: Color(0xFF6F35A5),
+        activeColor: Color(0xFFA96DA3),
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.folder),
         title: ("My Documents"),
-        activeColor: Color(0xFF6F35A5),
+        activeColor: Color(0xFFA96DA3),
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.add),
         title: ("My Activities"),
-        activeColor: Color(0xFF6F35A5),
+        activeColor: Color(0xFFA96DA3),
         inactiveColor: CupertinoColors.systemGrey,
       ),
     ];

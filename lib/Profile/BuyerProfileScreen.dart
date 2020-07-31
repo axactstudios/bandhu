@@ -68,10 +68,10 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
       appBar: AppBar(
         title: Text(
           'Profile',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
               textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.w400)),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(15.0),
@@ -122,7 +122,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -132,7 +132,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'User Type :',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -146,7 +146,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                   child: Text(
                                     userData.userType,
                                     overflow: TextOverflow.fade,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.varelaRound(
                                         textStyle: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
@@ -162,7 +162,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         elevation: 5,
                         margin: EdgeInsets.only(top: 15),
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -172,7 +172,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'State:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -184,7 +184,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.stateName,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -199,7 +199,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -209,7 +209,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'District:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -221,7 +221,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.districtName,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -236,7 +236,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -246,7 +246,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Producer:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -260,7 +260,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                   child: Text(
                                     userData.producerName,
                                     overflow: TextOverflow.fade,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.varelaRound(
                                         textStyle: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
@@ -276,7 +276,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -286,7 +286,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Father / Husband:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -300,7 +300,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                   child: Text(
                                     userData.fatherName,
                                     overflow: TextOverflow.fade,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.varelaRound(
                                         textStyle: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
@@ -316,7 +316,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -326,7 +326,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Age:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -337,7 +337,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 ),
                                 Text(
                                   '${userData.age}',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -352,7 +352,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -362,7 +362,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Education:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -374,7 +374,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.education,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -389,7 +389,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -399,7 +399,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Religion:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -411,7 +411,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.religion,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -426,7 +426,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -436,7 +436,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Sex:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -447,7 +447,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 ),
                                 Text(
                                   userData.sex,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -462,7 +462,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -472,7 +472,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Marital Status:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -484,7 +484,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.maritalStatus,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -499,7 +499,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -510,7 +510,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   'Address:',
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -524,7 +524,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                   child: Text(
                                     userData.address,
                                     overflow: TextOverflow.fade,
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.varelaRound(
                                         textStyle: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
@@ -540,7 +540,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -550,7 +550,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Primary Number:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -562,7 +562,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.phNo1,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -577,7 +577,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width * 0.95,
                           child: Padding(
@@ -587,7 +587,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Secondary Number:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -599,7 +599,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.phNo2,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -614,7 +614,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -624,7 +624,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Bank Name:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -636,7 +636,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.bankName,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -651,7 +651,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -661,7 +661,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Account Number:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -673,7 +673,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.accNo,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -688,7 +688,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -698,7 +698,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'IFSC Code:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -710,7 +710,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.ifscCode,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -725,7 +725,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -735,7 +735,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Coordinates:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -747,7 +747,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.coordinates,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -762,7 +762,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -772,7 +772,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Number of Members:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -784,7 +784,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.members,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -799,7 +799,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -809,7 +809,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Access:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -821,7 +821,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.access,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -836,7 +836,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -846,7 +846,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'SHG Name:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -858,7 +858,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                                 Text(
                                   userData.shgName,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -873,7 +873,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 35),
                         elevation: 5,
                         shadowColor: Colors.black,
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         child: Container(
                           width: size.width,
                           child: Padding(
@@ -883,7 +883,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                               children: <Widget>[
                                 Text(
                                   'Federation:',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.varelaRound(
                                       textStyle: TextStyle(
                                           color: Colors.white,
                                           fontSize: size1,
@@ -912,7 +912,7 @@ class _BuyerProfileScreenState extends State<BuyerProfileScreen> {
                     ])
                   : Center(
                       child: SpinKitWave(
-                        color: Color(0xFF6F35A5),
+                        color: Color(0xFFA96DA3),
                         size: 30,
                       ),
                     ),

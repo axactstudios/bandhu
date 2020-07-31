@@ -281,10 +281,10 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
             child: Icon(Icons.arrow_back_ios)),
         title: Text(
           'Add new activity',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
               textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25)),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -309,9 +309,9 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                       children: <Widget>[
                         Text(
                           'Activity : ',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(
-                                color: Color(0xFF6F35A5),
+                                color: Colors.black.withOpacity(0.5),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 17),
                           ),
@@ -357,7 +357,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black, width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -366,13 +366,13 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                       children: <Widget>[
                         Text(
                           'Images : ',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(fontSize: 15),
                           ),
                         ),
                         Text(
                           imageUrls.length.toString(),
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(fontSize: 15),
                           ),
                         ),
@@ -382,7 +382,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
@@ -407,7 +407,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black, width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -416,13 +416,13 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                       children: <Widget>[
                         Text(
                           'Videos : ',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(fontSize: 15),
                           ),
                         ),
                         Text(
                           videoUrls.length.toString(),
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(fontSize: 15),
                           ),
                         ),
@@ -432,7 +432,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
@@ -465,8 +465,8 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF6F35A5),
-                    borderRadius: BorderRadius.circular(33),
+                    color: Color(0xFFA96DA3),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   width: ((MediaQuery.of(context).size).width * 0.8),
                   child: Center(
@@ -474,7 +474,7 @@ class _NewBuyerActivityState extends State<NewBuyerActivity> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Publish',
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w400,

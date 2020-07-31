@@ -127,7 +127,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.8,
                                 child: RaisedButton(
-                                  color: Color(0xFF6F35A5),
+                                  color: Color(0xFFA96DA3),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(15.0)),
@@ -171,7 +171,7 @@ class _OTPScreenState extends State<OTPScreen> {
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 2,
       backgroundColor: color,
-      textColor: Color(0xFF6F35A5),
+      textColor: Color(0xFFA96DA3),
       fontSize: 16.0,
     );
   }

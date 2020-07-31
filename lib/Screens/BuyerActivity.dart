@@ -69,7 +69,7 @@ class _BuyerActivityState extends State<BuyerActivity> {
           child: Center(
             child: Text(
               'Activities',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.varelaRound(
                   textStyle: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 25,
@@ -77,7 +77,7 @@ class _BuyerActivityState extends State<BuyerActivity> {
             ),
           ),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -108,11 +108,12 @@ class _BuyerActivityState extends State<BuyerActivity> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          alignment: Alignment.center,
           child: buyerActivityList.length != 0
               ? Column(
                   children: buyerActivityList,
                 )
-              : Center(child: Text('Please Reload')),
+              : Center(child: Text('No Activities')),
         ),
       ),
     );

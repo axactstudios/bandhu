@@ -15,7 +15,7 @@ class _BuyerProfileState extends State<BuyerProfile> {
       body: Center(
         child: Text(
           'Buyer\'s Profile',
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.varelaRound(
             textStyle: TextStyle(fontSize: pHeight * 0.04),
           ),
         ),

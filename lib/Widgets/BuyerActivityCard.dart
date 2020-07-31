@@ -123,7 +123,7 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                 children: <Widget>[
                   Text(
                     'Requirement :',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
@@ -137,7 +137,7 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                     width: 170,
                     child: Text(
                       widget.activity.requirement,
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.varelaRound(
                         textStyle: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 15,
@@ -217,8 +217,8 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF6F35A5),
-                    borderRadius: BorderRadius.circular(33),
+                    color: Color(0xFFA96DA3),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   width: 200,
                   child: Center(
@@ -228,7 +228,7 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                       child: Text(
                         'View Uploaded Videos',
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,

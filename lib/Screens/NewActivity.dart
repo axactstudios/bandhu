@@ -283,7 +283,7 @@ class _NewActivityState extends State<NewActivity> {
           style: GoogleFonts.poppins(
               textStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 25)),
         ),
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -308,9 +308,9 @@ class _NewActivityState extends State<NewActivity> {
                       children: <Widget>[
                         Text(
                           'Activity : ',
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.varelaRound(
                             textStyle: TextStyle(
-                                color: Color(0xFF6F35A5),
+                                color: Colors.black.withOpacity(0.5),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 17),
                           ),
@@ -357,7 +357,7 @@ class _NewActivityState extends State<NewActivity> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black, width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -366,9 +366,9 @@ class _NewActivityState extends State<NewActivity> {
                       children: <Widget>[
                         Text(
                           'Images : ',
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(fontSize: 15),
-                          ),
+                          style: GoogleFonts.varelaRound(
+                              textStyle: TextStyle(fontSize: 15),
+                              color: Colors.black.withOpacity(0.5)),
                         ),
                         Text(
                           imageUrls.length.toString(),
@@ -382,7 +382,7 @@ class _NewActivityState extends State<NewActivity> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
@@ -407,7 +407,7 @@ class _NewActivityState extends State<NewActivity> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black, width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -417,14 +417,14 @@ class _NewActivityState extends State<NewActivity> {
                         Text(
                           'Videos : ',
                           style: GoogleFonts.poppins(
-                            textStyle: TextStyle(fontSize: 15),
-                          ),
+                              textStyle: TextStyle(fontSize: 15),
+                              color: Colors.black.withOpacity(0.5)),
                         ),
                         Text(
                           videoUrls.length.toString(),
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(fontSize: 15),
-                          ),
+                          style: GoogleFonts.varelaRound(
+                              textStyle: TextStyle(fontSize: 15),
+                              color: Color(0xFFA96DA3)),
                         ),
                         InkWell(
                           onTap: () async {
@@ -432,7 +432,7 @@ class _NewActivityState extends State<NewActivity> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF6F35A5),
+                              color: Color(0xFFA96DA3),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
@@ -465,16 +465,16 @@ class _NewActivityState extends State<NewActivity> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF6F35A5),
-                    borderRadius: BorderRadius.circular(33),
+                    color: Color(0xFFA96DA3),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   width: ((MediaQuery.of(context).size).width * 0.8),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         'Publish',
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w400,

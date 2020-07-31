@@ -27,7 +27,7 @@ class _BuyerVideoListState extends State<BuyerVideoList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF6F35A5),
+          backgroundColor: Color(0xFFA96DA3),
           title: Text('Videos'),
         ),
         body: vidList != null
@@ -95,7 +95,7 @@ class _BuyerVideoListState extends State<BuyerVideoList> {
               children: <Widget>[
                 Text(
                   'Video ${i + 1}',
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.varelaRound(
                     textStyle: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 15,

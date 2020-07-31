@@ -32,7 +32,7 @@ class _MainHomeState extends State<MainHome> {
               child: Container(
                 height: pHeight * 0.475,
                 width: pWidth,
-                color: Color(0xFF6F35A5),
+                color: Color(0xFFA96DA3),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -56,7 +56,7 @@ class _MainHomeState extends State<MainHome> {
                           ),
                           Text(
                             'CONTINUE AS A\nBUYER',
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.varelaRound(
                                 textStyle: TextStyle(
                                     fontSize: pHeight * 0.03,
                                     color: Color(0xFFF1E6FF))),
@@ -81,7 +81,7 @@ class _MainHomeState extends State<MainHome> {
           ),
           Text(
             'OR',
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.varelaRound(
               textStyle: TextStyle(fontSize: pHeight * 0.035),
             ),
           ),
@@ -121,7 +121,7 @@ class _MainHomeState extends State<MainHome> {
                         children: <Widget>[
                           Icon(
                             Icons.chevron_left,
-                            color: Color(0xFF6F35A5),
+                            color: Color(0xFFA96DA3),
                             size: pHeight * 0.06,
                           ),
                           SizedBox(
@@ -130,10 +130,10 @@ class _MainHomeState extends State<MainHome> {
                           Text(
                             'CONTINUE AS A\nSELLER',
                             textAlign: TextAlign.right,
-                            style: GoogleFonts.poppins(
+                            style: GoogleFonts.varelaRound(
                               textStyle: TextStyle(
                                 fontSize: pHeight * 0.025,
-                                color: Color(0xFF6F35A5),
+                                color: Color(0xFFA96DA3),
                               ),
                             ),
                           ),

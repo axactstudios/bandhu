@@ -44,7 +44,7 @@ class _ActivityCardState extends State<ActivityCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
       width: double.infinity,
       child: Card(
         shape: RoundedRectangleBorder(
@@ -92,7 +92,10 @@ class _ActivityCardState extends State<ActivityCard> {
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
-                          child: Icon(Icons.edit),
+                          child: Icon(
+                            Icons.edit,
+                            color: Color(0xFFA96DA3),
+                          ),
                         ),
                       ),
                       InkWell(
@@ -101,7 +104,10 @@ class _ActivityCardState extends State<ActivityCard> {
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
-                          child: Icon(Icons.delete),
+                          child: Icon(
+                            Icons.delete,
+                            color: Color(0xFFA96DA3),
+                          ),
                         ),
                       ),
                     ],
@@ -117,7 +123,7 @@ class _ActivityCardState extends State<ActivityCard> {
                 children: <Widget>[
                   Text(
                     'Raw Material :\nUsed',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
@@ -131,11 +137,11 @@ class _ActivityCardState extends State<ActivityCard> {
                     width: 170,
                     child: Text(
                       widget.activity.rawMaterial,
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.varelaRound(
                         textStyle: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 15,
-                            color: Colors.green),
+                            color: Colors.black.withOpacity(0.7)),
                       ),
                     ),
                   ),
@@ -150,7 +156,7 @@ class _ActivityCardState extends State<ActivityCard> {
                 children: <Widget>[
                   Text(
                     'Production :',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
@@ -162,72 +168,73 @@ class _ActivityCardState extends State<ActivityCard> {
                   ),
                   Text(
                     widget.activity.avgProduction,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
-                          color: Colors.green),
+                          color: Colors.black.withOpacity(0.7)),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               imageList != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: GFCarousel(
-                        items: imageList.map(
-                          (url) {
-                            return Card(
-                              elevation: 8,
-                              margin: EdgeInsets.all(8.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: url,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
+                  ? GFCarousel(
+                      items: imageList.map(
+                        (url) {
+                          return Card(
+                            elevation: 8,
+                            margin: EdgeInsets.all(8.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                child: CachedNetworkImage(
+                                  imageUrl: url,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                    placeholder: (context, url) => Container(
-                                        height: 100,
-                                        width: 100,
-                                        child: GFLoader(
-                                          type: GFLoaderType.ios,
-                                        )),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
                                   ),
+                                  placeholder: (context, url) => Container(
+                                      height: 100,
+                                      width: 100,
+                                      child: GFLoader(
+                                        type: GFLoaderType.ios,
+                                      )),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
                               ),
-                            );
-                          },
-                        ).toList(),
-                        onPageChanged: (index) {
-                          setState(() {
-                            index;
-                          });
+                            ),
+                          );
                         },
-                        enlargeMainPage: true,
-                        pagination: true,
-                        passiveIndicator: Colors.black,
-                        activeIndicator: Colors.white,
-                        pagerSize: 10,
-                      ))
+                      ).toList(),
+                      onPageChanged: (index) {
+                        setState(() {
+                          index;
+                        });
+                      },
+                      enlargeMainPage: true,
+                      pagination: true,
+                      passiveIndicator: Colors.black,
+                      activeIndicator: Colors.white,
+                      pagerSize: 10,
+                    )
                   : Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text('No Images'),
                     ),
+              SizedBox(
+                height: 10,
+              ),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -240,8 +247,8 @@ class _ActivityCardState extends State<ActivityCard> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF6F35A5),
-                    borderRadius: BorderRadius.circular(33),
+                    color: Color(0xFFA96DA3),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   width: 200,
                   child: Center(
@@ -251,7 +258,7 @@ class _ActivityCardState extends State<ActivityCard> {
                       child: Text(
                         'View Uploaded Videos',
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
+                        style: GoogleFonts.varelaRound(
                           textStyle: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,

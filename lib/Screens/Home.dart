@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF6F35A5),
+        backgroundColor: Color(0xFFA96DA3),
         actions: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
                   child: Text(
                     'Welcome to Bandhu',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 25,
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
                   child: Text(
                     'An initiative to promote self reliant India and empower its citizens',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 25,
@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
                   child: Text(
                     'Use the menu options to manage your profile, list activities and pictures/videos to promote your products.',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 25,
