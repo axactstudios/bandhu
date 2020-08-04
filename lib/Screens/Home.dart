@@ -22,8 +22,11 @@ class _HomeState extends State<Home> {
   void _select(Choice choice) {
     switch (choice.title) {
       case 'Main Home':
-        FirebaseAuth.instance.signOut();
-        pushNewScreen(context, screen: MainHome(), withNavBar: false);
+        pushNewScreen(
+          context,
+          screen: MainHome(),
+          withNavBar: false,
+        );
         break;
       case 'Profile':
         Navigator.push(

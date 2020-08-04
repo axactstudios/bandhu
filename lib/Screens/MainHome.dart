@@ -1,5 +1,12 @@
+import 'package:bandhunew/MyHomePage.dart';
+import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerHome.dart';
+import 'package:bandhunew/Screens/Home.dart';
+import 'package:bandhunew/Screens/NewBuyerScreen.dart';
 import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:diagonal/diagonal.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +16,44 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
+  FirebaseAuth mAuth = FirebaseAuth.instance;
+
+  bool isSignedIn, isCompleted;
+
+  void getStatus() async {
+    FirebaseUser currentUser = await mAuth.currentUser();
+    if (currentUser != null) {
+      setState(() {
+        isSignedIn = true;
+        print(isSignedIn);
+      });
+      DatabaseReference dbref = FirebaseDatabase.instance
+          .reference()
+          .child('Buyers')
+          .child(currentUser.uid)
+          .child('Details');
+      await dbref.once().then((DataSnapshot snap) async {
+        // ignore: non_constant_identifier_names
+        isCompleted = await snap.value['isCompleted'];
+        setState(() {
+          print(isCompleted);
+          print('All statuses have been updated\n\n');
+        });
+      });
+    } else {
+      isSignedIn = false;
+      setState(() {
+        print('--------Is the user signed in? $isSignedIn -------------------');
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getStatus();
+  }
+
   @override
   Widget build(BuildContext context) {
     final pHeight = MediaQuery.of(context).size.height;
@@ -19,14 +64,29 @@ class _MainHomeState extends State<MainHome> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignInPage(
-                    userType: 'Buyer',
-                  ),
-                ),
-              );
+              isSignedIn
+                  // ignore: unnecessary_statements
+                  ? (isCompleted
+                      ? Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BuyerHome(),
+                          ),
+                        )
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewBuyer(),
+                          ),
+                        ))
+                  : Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignInPage(
+                          userType: 'Buyer',
+                        ),
+                      ),
+                    );
             },
             child: Diagonal(
               child: Container(
@@ -87,15 +147,24 @@ class _MainHomeState extends State<MainHome> {
           ),
           Diagonal(
             child: InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInPage(
-                      userType: 'Seller',
-                    ),
-                  ),
-                );
+              onTap: () async {
+                FirebaseUser currentUser = await mAuth.currentUser();
+                print(currentUser);
+                currentUser == null
+                    ? Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInPage(
+                            userType: 'Seller',
+                          ),
+                        ),
+                      )
+                    : Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyHomePage(),
+                        ),
+                      );
               },
               child: Container(
                 color: Color(0xFFF1E6FF),

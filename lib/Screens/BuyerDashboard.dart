@@ -20,7 +20,6 @@ class _BuyerDashboardState extends State<BuyerDashboard> {
   void _select(Choice choice) {
     switch (choice.title) {
       case 'Main Home':
-        FirebaseAuth.instance.signOut();
         pushNewScreen(context, screen: MainHome(), withNavBar: false);
         break;
       case 'Profile':
