@@ -235,7 +235,9 @@ class _OTPScreenState extends State<OTPScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NewBuyer(),
+                    builder: (context) => BuyerProfileEdit(
+                      userType: 'Buyer',
+                    ),
                   ),
                 );
               }
@@ -340,7 +342,9 @@ class _OTPScreenState extends State<OTPScreen> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NewBuyer(),
+                  builder: (context) => BuyerProfileEdit(
+                    userType: 'Buyer',
+                  ),
                 ),
               );
             }
