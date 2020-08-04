@@ -2,6 +2,7 @@ import 'package:bandhunew/MyHomePage.dart';
 import 'package:bandhunew/Profile/BuyerProfileEdit.dart';
 import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerForm.dart';
 import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:bandhunew/Screens/NewBuyerScreen.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -235,9 +236,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BuyerProfileEdit(
-                      userType: 'Buyer',
-                    ),
+                    builder: (context) => BuyerRegisterForm(),
                   ),
                 );
               }
@@ -342,9 +341,7 @@ class _OTPScreenState extends State<OTPScreen> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BuyerProfileEdit(
-                    userType: 'Buyer',
-                  ),
+                  builder: (context) => BuyerRegisterForm(),
                 ),
               );
             }
