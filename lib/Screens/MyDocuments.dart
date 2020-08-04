@@ -86,7 +86,8 @@ class _MyDocumentsState extends State<MyDocuments> {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
 
     StorageReference storageReference;
-    storageReference = _storage.ref().child("Documents/${user.uid}/$fileType");
+    storageReference =
+        _storage.ref().child("Documents/Sellers/${user.uid}/$fileType");
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     Fluttertoast.showToast(msg: 'Uploading...', gravity: ToastGravity.CENTER);

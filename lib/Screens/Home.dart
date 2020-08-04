@@ -1,5 +1,6 @@
 import 'package:bandhunew/Classes/delayed_animation.dart';
 import 'package:bandhunew/Screens/Activities.dart';
+import 'package:bandhunew/Screens/FAQ.dart';
 import 'package:bandhunew/Screens/MainHome.dart';
 import 'package:bandhunew/auth/SignInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -44,6 +45,12 @@ class _HomeState extends State<Home> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => MyActivities()),
+        );
+        break;
+      case 'FAQs':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FAQ()),
         );
         break;
     }
@@ -193,4 +200,5 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Profile', icon: Icons.directions_bus),
   const Choice(title: 'Documents', icon: Icons.directions_railway),
   const Choice(title: 'Activities', icon: Icons.directions_walk),
+  const Choice(title: 'FAQs', icon: Icons.question_answer),
 ];

@@ -1,6 +1,7 @@
 import 'package:bandhunew/MyHomePage.dart';
 import 'package:bandhunew/Profile/BuyerProfileEdit.dart';
 import 'package:bandhunew/Screens/BuyerDashboard.dart';
+import 'package:bandhunew/Screens/BuyerForm.dart';
 import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:bandhunew/Screens/Home.dart';
 import 'package:bandhunew/Screens/NewBuyerScreen.dart';
@@ -77,9 +78,7 @@ class _MainHomeState extends State<MainHome> {
                       : Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BuyerProfileEdit(
-                              userType: 'Buyer',
-                            ),
+                            builder: (context) => BuyerRegisterForm(),
                           ),
                         ))
                   : Navigator.pushReplacement(

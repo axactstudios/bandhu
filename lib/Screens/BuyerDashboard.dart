@@ -3,6 +3,7 @@ import 'package:bandhunew/Profile/BuyerProfileScreen.dart';
 import 'package:bandhunew/Screens/BuyerActivity.dart';
 import 'package:bandhunew/Screens/BuyerDocuments.dart';
 import 'package:bandhunew/Screens/BuyerProfile.dart';
+import 'package:bandhunew/Screens/FAQ.dart';
 import 'package:bandhunew/Screens/MainHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,12 @@ class _BuyerDashboardState extends State<BuyerDashboard> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => BuyerActivity()),
+        );
+        break;
+      case 'FAQs':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FAQ()),
         );
         break;
     }
@@ -187,4 +194,5 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Profile', icon: Icons.directions_bus),
   const Choice(title: 'Documents', icon: Icons.directions_railway),
   const Choice(title: 'Activities', icon: Icons.directions_walk),
+  const Choice(title: 'FAQs', icon: Icons.question_answer),
 ];
