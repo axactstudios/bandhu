@@ -1,4 +1,5 @@
 import 'package:bandhunew/MyHomePage.dart';
+import 'package:bandhunew/Profile/BuyerProfileEdit.dart';
 import 'package:bandhunew/Screens/BuyerDashboard.dart';
 import 'package:bandhunew/Screens/BuyerHome.dart';
 import 'package:bandhunew/Screens/Home.dart';
@@ -76,7 +77,9 @@ class _MainHomeState extends State<MainHome> {
                       : Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NewBuyer(),
+                            builder: (context) => BuyerProfileEdit(
+                              userType: 'Buyer',
+                            ),
                           ),
                         ))
                   : Navigator.pushReplacement(

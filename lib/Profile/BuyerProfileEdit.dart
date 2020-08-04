@@ -1,6 +1,7 @@
 import 'package:bandhunew/Classes/Profile.dart';
 import 'package:bandhunew/Screens/BuyerDashboard.dart';
 import 'package:bandhunew/Screens/BuyerHome.dart';
+import 'package:bandhunew/Screens/NewBuyerScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -54,38 +55,38 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
 
   User userData = User();
 
-  getDatabaseRef() async {
-    FirebaseUser user = await mAuth.currentUser();
-    String uid = user.uid;
-    DatabaseReference dbref = FirebaseDatabase.instance
-        .reference()
-        .child('Buyers')
-        .child(uid)
-        .child('Details');
-    await dbref.once().then((DataSnapshot snap) async {
-      // ignore: non_constant_identifier_names
-      userData.stateName = await snap.value['state'];
-      userData.districtName = await snap.value['district'];
-      userData.producerName = await snap.value['producer'];
-      userData.fatherName = await snap.value['fatherorhusband'];
-      userData.age = await snap.value['age'];
-      userData.education = await snap.value['education'];
-      userData.religion = await snap.value['religion'];
-      userData.sex = await snap.value['sex'];
-      userData.maritalStatus = await snap.value['maritalStatus'];
-      userData.address = await snap.value['address'];
-      userData.phNo1 = await snap.value['phNo1'];
-      userData.phNo2 = await snap.value['phNo2'];
-      userData.bankName = await snap.value['bankName'];
-      userData.accNo = await snap.value['accNo'];
-      userData.ifscCode = await snap.value['ifsc'];
-      userData.coordinates = await snap.value['coordinates'];
-      userData.members = await snap.value['members'];
-      userData.access = await snap.value['access'];
-      userData.shgName = await snap.value['shgName'];
-      setState(() {});
-    });
-  }
+//  getDatabaseRef() async {
+//    FirebaseUser user = await mAuth.currentUser();
+//    String uid = user.uid;
+//    DatabaseReference dbref = FirebaseDatabase.instance
+//        .reference()
+//        .child('Buyers')
+//        .child(uid)
+//        .child('Details');
+//    await dbref.once().then((DataSnapshot snap) async {
+//      // ignore: non_constant_identifier_names
+//      userData.stateName = await snap.value['state'];
+//      userData.districtName = await snap.value['district'];
+//      userData.producerName = await snap.value['producer'];
+//      userData.fatherName = await snap.value['fatherorhusband'];
+//      userData.age = await snap.value['age'];
+//      userData.education = await snap.value['education'];
+//      userData.religion = await snap.value['religion'];
+//      userData.sex = await snap.value['sex'];
+//      userData.maritalStatus = await snap.value['maritalStatus'];
+//      userData.address = await snap.value['address'];
+//      userData.phNo1 = await snap.value['phNo1'];
+//      userData.phNo2 = await snap.value['phNo2'];
+//      userData.bankName = await snap.value['bankName'];
+//      userData.accNo = await snap.value['accNo'];
+//      userData.ifscCode = await snap.value['ifsc'];
+//      userData.coordinates = await snap.value['coordinates'];
+//      userData.members = await snap.value['members'];
+//      userData.access = await snap.value['access'];
+//      userData.shgName = await snap.value['shgName'];
+//      setState(() {});
+//    });
+//  }
 
   TextEditingController _stateName;
   TextEditingController _districtName;
@@ -129,7 +130,6 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
 
   @override
   void initState() {
-    getDatabaseRef();
     initialize();
   }
 
@@ -162,7 +162,7 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Profile Setup',
+                  'Buyer Registration',
                   style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -732,7 +732,13 @@ class _BuyerProfileEditState extends State<BuyerProfileEdit> {
                   padding: const EdgeInsets.all(4.0),
                   child: InkWell(
                     onTap: () {
-                      writeData();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewBuyer(),
+                        ),
+                      );
+//                      writeData();
                     },
                     child: Container(
                       decoration: BoxDecoration(
