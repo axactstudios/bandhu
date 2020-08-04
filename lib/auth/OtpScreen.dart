@@ -3,7 +3,7 @@ import 'package:bandhunew/Profile/BuyerProfileEdit.dart';
 import 'package:bandhunew/Profile/ProfileEdit.dart';
 import 'package:bandhunew/Screens/BuyerDashboard.dart';
 import 'package:bandhunew/Screens/BuyerHome.dart';
-import 'package:bandhunew/Screens/Home.dart';
+import 'package:bandhunew/Screens/NewBuyerScreen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -221,22 +221,21 @@ class _OTPScreenState extends State<OTPScreen> {
                 .child('Buyers')
                 .child(user.uid)
                 .child('Details');
-            useraddressref.once().then((DataSnapshot snap) {
+            useraddressref.once().then((DataSnapshot snap) async {
               // ignore: non_constant_identifier_names
-              var DATA = snap.value;
-              if (DATA == null) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BuyerProfileEdit(
-                              userType: widget.userType,
-                            )),
-                    (Route<dynamic> route) => false);
-              } else {
+              bool isCompleted = await snap.value['isCompleted'];
+              if (isCompleted) {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BuyerHome(),
+                  ),
+                );
+              } else {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewBuyer(),
                   ),
                 );
               }
@@ -327,22 +326,21 @@ class _OTPScreenState extends State<OTPScreen> {
               .child('Buyers')
               .child(user.uid)
               .child('Details');
-          useraddressref.once().then((DataSnapshot snap) {
+          useraddressref.once().then((DataSnapshot snap) async {
             // ignore: non_constant_identifier_names
-            var DATA = snap.value;
-            if (DATA == null) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BuyerProfileEdit(
-                            userType: widget.userType,
-                          )),
-                  (Route<dynamic> route) => false);
+            bool isCompleted = await snap.value['isCompleted'];
+            if (isCompleted) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BuyerHome(),
+                ),
+              );
             } else {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BuyerDashboard(),
+                  builder: (context) => NewBuyer(),
                 ),
               );
             }
