@@ -74,11 +74,45 @@ class _ActivityCardState extends State<ActivityCard> {
                             print(
                                 "---------------__${imageList[0]}---------------------");
                           }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => EditActivity(
-                                      activityToEdit: Activity(
+                          if (imageList.length == 0 &&
+                              widget.activity.videoList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditActivity(
+                                        activityToEdit: Activity(
+                                          name: widget.activity.name,
+                                          rawMaterial:
+                                              widget.activity.rawMaterial,
+                                          avgProduction:
+                                              widget.activity.avgProduction,
+                                          key: widget.activity.key,
+                                        ),
+                                      )),
+                            );
+                          }
+                          if (imageList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditActivity(
+                                        activityToEdit: Activity(
+                                            name: widget.activity.name,
+                                            rawMaterial:
+                                                widget.activity.rawMaterial,
+                                            avgProduction:
+                                                widget.activity.avgProduction,
+                                            key: widget.activity.key,
+                                            videoList:
+                                                widget.activity.videoList),
+                                      )),
+                            );
+                          } else if (widget.activity.videoList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditActivity(
+                                        activityToEdit: Activity(
                                           name: widget.activity.name,
                                           rawMaterial:
                                               widget.activity.rawMaterial,
@@ -86,9 +120,27 @@ class _ActivityCardState extends State<ActivityCard> {
                                               widget.activity.avgProduction,
                                           key: widget.activity.key,
                                           imageList: imageList,
-                                          videoList: widget.activity.videoList),
-                                    )),
-                          );
+                                        ),
+                                      )),
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditActivity(
+                                        activityToEdit: Activity(
+                                            name: widget.activity.name,
+                                            rawMaterial:
+                                                widget.activity.rawMaterial,
+                                            avgProduction:
+                                                widget.activity.avgProduction,
+                                            key: widget.activity.key,
+                                            imageList: imageList,
+                                            videoList:
+                                                widget.activity.videoList),
+                                      )),
+                            );
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),

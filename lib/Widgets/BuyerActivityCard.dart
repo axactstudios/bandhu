@@ -80,6 +80,56 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                             print(
                                 "---------------__${imageList[0]}---------------------");
                           }
+                          if (imageList.length == 0 &&
+                              widget.activity.videoList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditBuyerActivity(
+                                        activityToEdit: BuyerActivityClass(
+                                          name: widget.activity.name,
+                                          requirement:
+                                              widget.activity.requirement,
+                                          key: widget.activity.key,
+                                        ),
+                                        contextToRefresh:
+                                            widget.activitiesContext,
+                                      )),
+                            );
+                          }
+                          if (imageList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditBuyerActivity(
+                                        activityToEdit: BuyerActivityClass(
+                                            name: widget.activity.name,
+                                            requirement:
+                                                widget.activity.requirement,
+                                            key: widget.activity.key,
+                                            videoList:
+                                                widget.activity.videoList),
+                                        contextToRefresh:
+                                            widget.activitiesContext,
+                                      )),
+                            );
+                          } else if (widget.activity.videoList.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditBuyerActivity(
+                                        activityToEdit: BuyerActivityClass(
+                                          name: widget.activity.name,
+                                          requirement:
+                                              widget.activity.requirement,
+                                          key: widget.activity.key,
+                                          imageList: imageList,
+                                        ),
+                                        contextToRefresh:
+                                            widget.activitiesContext,
+                                      )),
+                            );
+                          }
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -98,7 +148,10 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 10, 10, 0),
-                          child: Icon(Icons.edit),
+                          child: Icon(
+                            Icons.edit,
+                            color: Color(0xFFA96DA3),
+                          ),
                         ),
                       ),
                       InkWell(
@@ -107,7 +160,10 @@ class _BuyerActivityCardState extends State<BuyerActivityCard> {
                         },
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                          child: Icon(Icons.delete),
+                          child: Icon(
+                            Icons.delete,
+                            color: Color(0xFFA96DA3),
+                          ),
                         ),
                       ),
                     ],

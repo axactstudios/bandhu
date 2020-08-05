@@ -19,21 +19,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
         color: Color(0xFFF1E6FF),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          minLines: 2,
-          maxLines: 3,
-          controller: widget.controller,
-          cursorColor: Colors.black,
-          decoration: new InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              contentPadding:
-                  EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-              hintText: widget.hintText),
-        ),
-      ),
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            minLines: 2,
+            maxLines: 3,
+            controller: widget.controller,
+            cursorColor: Colors.black,
+            decoration: new InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding:
+                    EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+                hintText: widget.hintText),
+          )),
     );
   }
 }
