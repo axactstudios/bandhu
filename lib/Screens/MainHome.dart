@@ -66,29 +66,20 @@ class _MainHomeState extends State<MainHome> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              isSignedIn
-                  // ignore: unnecessary_statements
-                  ? (isCompleted
-                      ? Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BuyerHome(),
-                          ),
-                        )
-                      : Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BuyerRegisterForm(),
-                          ),
-                        ))
-                  : Navigator.pushReplacement(
+              // ignore: unnecessary_statements
+              (isCompleted != null
+                  ? Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignInPage(
-                          userType: 'Buyer',
-                        ),
+                        builder: (context) => BuyerHome(),
                       ),
-                    );
+                    )
+                  : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BuyerRegisterForm(),
+                      ),
+                    ));
             },
             child: Diagonal(
               child: Container(

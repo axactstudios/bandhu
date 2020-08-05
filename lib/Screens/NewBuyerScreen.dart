@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mailer2/mailer.dart';
 
 class NewBuyer extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _NewBuyerState extends State<NewBuyer> {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Text(
-            'We have sent your registration request to Net Analytiks. Your registration will be processed in a few days',
+            'Your registration request is sent to Net Analytiks. We will contact you soon for completing the process!',
             textAlign: TextAlign.center,
             style: GoogleFonts.varelaRound(
               textStyle: TextStyle(

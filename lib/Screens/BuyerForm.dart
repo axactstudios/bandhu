@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mailer2/mailer.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 
 import 'NewBuyerScreen.dart';
@@ -12,6 +13,29 @@ class BuyerRegisterForm extends StatefulWidget {
 class _BuyerRegisterFormState extends State<BuyerRegisterForm> {
   TextEditingController email = new TextEditingController(text: '');
   TextEditingController phone = new TextEditingController(text: '');
+  send() async {
+    var options = new GmailSmtpOptions()
+      ..username = 'axactstudios@gmail.com'
+      ..password = 'axactstudios@123';
+
+    var emailTransport = new SmtpTransport(options);
+
+    // Create our mail/envelope.
+    var envelope = new Envelope()
+      ..from = 'axactstudios@gmail.com'
+      ..recipients.add(
+        'lumevent@gmail.com',
+      )
+      ..subject = 'Buyer Registration Request ${DateTime.now()}'
+      ..text =
+          'Phone Number-${phone.text}\nMail-${email.text}\nDate-${DateTime.now()}';
+
+    // Email it.
+    emailTransport
+        .send(envelope)
+        .then((envelope) => print('Email sent!'))
+        .catchError((e) => print('Error occurred: $e'));
+  }
 
   final _formKey = GlobalKey<FormState>();
 
